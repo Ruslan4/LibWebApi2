@@ -9,7 +9,5 @@ namespace LibDataLayer.DAL.Entities
 {
     public class ApplicationRole : IdentityRole
     {
-        public ApplicationRole() { }
-        public string Description { get; set; }
     }
 }
