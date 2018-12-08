@@ -19,17 +19,17 @@ namespace LibDataLayer.DAL.Repositories
 
         public IEnumerable<ClientProfile> GetAll()
         {
-            return db.ClientProfiles.Include(o => o.Id);
+            return db.ClientProfile.Include(o => o.Id);
         }
 
         public ClientProfile Get(int id)
         {
-            return db.ClientProfiles.Find(id);
+            return db.ClientProfile.Find(id);
         }
 
         public void Create(ClientProfile clientProfile)
         {
-            db.ClientProfiles.Add(clientProfile);
+            db.ClientProfile.Add(clientProfile);
         }
 
         public void Update(ClientProfile clientProfile)
@@ -39,14 +39,14 @@ namespace LibDataLayer.DAL.Repositories
 
         public IEnumerable<ClientProfile> Find(Func<ClientProfile, Boolean> predicate)
         {
-            return db.ClientProfiles.Include(o => o.Id).AsEnumerable().Where(predicate).ToList();
+            return db.ClientProfile.Include(o => o.Id).AsEnumerable().Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            ClientProfile clientProfile = db.ClientProfiles.Find(id);
+            ClientProfile clientProfile = db.ClientProfile.Find(id);
             if (clientProfile != null)
-                db.ClientProfiles.Remove(clientProfile);
+                db.ClientProfile.Remove(clientProfile);
         }
     }
 }

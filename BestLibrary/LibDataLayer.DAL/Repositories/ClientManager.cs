@@ -19,7 +19,7 @@ namespace LibDataLayer.DAL.Repositories
 
         public void Create(ClientProfile item)
         {
-            Database.ClientProfiles.Add(item);
+            Database.ClientProfile.Add(item);
             Database.SaveChanges();
         }
 

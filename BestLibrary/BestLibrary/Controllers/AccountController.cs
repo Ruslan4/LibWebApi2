@@ -40,7 +40,7 @@ namespace BestLibrary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
         {
-            await SetInitialDataAsync();
+            //await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
                 UserDto userDto = new UserDto { Email = model.Email, Password = model.Password };
@@ -77,7 +77,7 @@ namespace BestLibrary.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
         {
-            await SetInitialDataAsync();
+            //await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
                 UserDto userDto = new UserDto
@@ -96,17 +96,17 @@ namespace BestLibrary.Controllers
             }
             return View(model);
         }
-        private async Task SetInitialDataAsync()
-        {
-            await UserService.SetInitialData(new UserDto
-            {
-                Email = "somemail@mail.ru",
-                UserName = "somemail@mail.ru",
-                Password = "ad46D_ewr3",
-                Name = "Семен Семенович Горбунков",
-                Address = "ул. Спортивная, д.30, кв.75",
-                Role = "admin",
-            }, new List<string> { "user", "admin" });
-        }
+        //private async Task SetInitialDataAsync()
+        //{
+        //    await UserService.SetInitialData(new UserDto
+        //    {
+        //        Email = "somemail@mail.ru",
+        //        UserName = "somemail@mail.ru",
+        //        Password = "ad46D_ewr3",
+        //        Name = "Семен Семенович Горбунков",
+        //        Address = "ул. Спортивная, д.30, кв.75",
+        //        Role = "admin",
+        //    }, new List<string> { "user", "admin" });
+        //}
     }
 }

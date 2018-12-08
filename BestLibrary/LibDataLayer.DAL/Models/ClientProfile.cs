@@ -10,6 +10,7 @@ namespace LibDataLayer.DAL.Models
         [Key]
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
+        public string ClientProfileId { get; set; }
 
         public string Name { get; set; }
         public string Address { get; set; }
@@ -17,6 +18,6 @@ namespace LibDataLayer.DAL.Models
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public int IssuanceOfBooksId { get; set; }
-        public virtual IssuanceOfBooks IssuanceOfBooks { get; set; }
+        public virtual ICollection<IssuanceOfBooks> IssuanceOfBooks { get; set; }
     }
 }
