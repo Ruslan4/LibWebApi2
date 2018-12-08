@@ -1,0 +1,146 @@
+﻿@Styles.Render("~/Content/LoginReg.css")
+
+<div class="userInfo" style="display:none;">
+    <p>You are logged in as: <span class="userName"></span></p>
+    <input type="button" value="LogOut" id="logOut" />
+</div>
+
+<div>
+    <input type="submit" id="getItemsButton" value="Получить данные" />
+</div>
+
+<body>
+    <div class="wrapper">
+        <div class="card-holder">
+            <div class="card">
+                <div class="card-body">
+                    <form name="form" @*method="post" action="/core/login?signin=23a0a4dd9b77b7ba7ec6d7edb7c40439"*@>
+                        <h2 class="text-center">Login to Library</h2>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="Username">Email</label>
+                            <input type="text"
+                                   id="emailLogin"
+                                   name="Username"
+                                   placeholder="Email"
+                                   class="form-control"
+                                   required
+                                   data-val="true"
+                                   data-val-email="The email address format is invalid."
+                                   data-val-required="Email field is required." />
+                            <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label" for="Password">Password</label>
+                            <input type="password"
+                                   id="passwordLogin"
+                                   name="Password"
+                                   placeholder="Password"
+                                   class="form-control"
+                                   required
+                                   autocomplete="off"
+                                   data-val="true"
+                                   data-val-required="Password field is required." />
+                            <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                        </div>
+
+                        <!-- TODO! RememberMe Реализовать -->
+                        <div class="form-group clearfix">
+                            <div class="float-left">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox"
+                                           id="RememberMe"
+                                           name="RememberMe"
+                                           class="custom-control-input"
+                                           value="true">
+                                    <label class="custom-control-label" for="RememberMe">Remember me</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row no-gutters">
+                            <div class="col-6 pr-2">
+                                <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Login" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="auth-bottom-text text-center">
+                        Never used Library before? <strong><a href="~/Registration/Register">Sign Up</a></strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+            var tokenKey = "tokenInfo";
+            $('#submitLogin').click(function (e) {
+                e.preventDefault();
+                var loginData = {
+                    grant_type: 'password',
+                    username: $('#emailLogin').val(),
+                    password: $('#passwordLogin').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Token',
+                    data: loginData,
+                    success: function (data) {
+                        //TODO Убрать токен!!!
+                        //console.clear();
+                        //console.log(data.access_token);
+                        $('.userName').text(data.userName);
+                        $('.userInfo').css('display', 'block');
+                        $('.loginForm').css('display', 'none');
+                        // sessionStorage += токен доступа
+                        sessionStorage.setItem(tokenKey, data.access_token);
+
+                    },
+                    error: function (data) {
+                        alert('Error in Login');
+                    }
+                });
+            });
+
+            $('#logOut').click(function (e) {
+                e.preventDefault();
+                sessionStorage.removeItem(tokenKey);
+                location.reload()
+            });
+        })
+    </script>
+
+    <!-- TODO! Тестовая проверка прав доступа до книг -->
+    <script type="text/javascript">
+        $(function () {
+            var tokenKey = "tokenInfo";
+
+            $('#getItemsButton').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'GET',
+                    url: '/UsersBook/Index',
+                    beforeSend: function (xhr) {
+                        var token = sessionStorage.getItem(tokenKey);
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
+                    success: function (data) {
+                        alert(data);
+                        location.href = '/UsersBook/Index';
+
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+        })
+    </script>
+}

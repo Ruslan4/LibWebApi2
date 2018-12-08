@@ -1,0 +1,74 @@
+﻿@model BestLibrary.Models.BookViewModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div>
+    <h4>Book information</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.BookID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookСipher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookСipher)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountBook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountBook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintDate)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditBook", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "GetAllBooks")
+</p>  

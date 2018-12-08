@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BestLibrary.Models.BookViewModel>  
+  
+@{  
+    ViewBag.Title = "GetAllBooks";  
+}  
+  
+<h2>All Books</h2>  
+  
+<p>  
+    @Html.ActionLink("Create New Book", "CreateBook")  
+</p>  
+<table class="table">  
+    <tr>  
+        <th>  
+            @Html.DisplayNameFor(model => model.BookID)  
+        </th> 
+        <th>  
+            @Html.DisplayNameFor(model => model.BookСipher)  
+        </th> 
+        <th>  
+            @Html.DisplayNameFor(model => model.Name)  
+        </th>  
+        <th>  
+            @Html.DisplayNameFor(model => model.Author)  
+        </th>   
+        <th>  
+            @Html.DisplayNameFor(model => model.CountBook)  
+        </th>  
+        <th>  
+            @Html.DisplayNameFor(model => model.Pages)  
+        </th> 
+        <th>  
+            @Html.DisplayNameFor(model => model.PrintDate)  
+        </th> 
+        <th></th>  
+    </tr>  
+  
+    @foreach (var item in Model) {  
+        <tr>  
+            <td>  
+                @Html.DisplayFor(modelItem => item.BookID)  
+            </td> 
+            <td>  
+                @Html.DisplayFor(modelItem => item.BookСipher)  
+            </td> 
+            <td>  
+                @Html.DisplayFor(modelItem => item.Name)  
+            </td>  
+            <td>  
+                @Html.DisplayFor(modelItem => item.Author)  
+            </td>   
+            <td>  
+                @Html.DisplayFor(modelItem => item.CountBook)  
+            </td>  
+            <td>  
+                @Html.DisplayFor(modelItem => item.Pages)  
+            </td>  
+            <td>  
+                @Html.DisplayFor(modelItem => item.PrintDate)  
+            </td> 
+            <td>  
+                @Html.ActionLink("Edit", "EditBook", new { id = item.BookID, cip= item.BookСipher, name=item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |  
+                @Html.ActionLink("Details", "Details", new { id=item.BookID }) |  
+                @Html.ActionLink("Delete", "Delete", new { id=item.BookID })  
+            </td>  
+        </tr>  
+    }  
+  
+</table>
