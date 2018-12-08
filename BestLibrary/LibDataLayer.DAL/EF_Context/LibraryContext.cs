@@ -22,5 +22,11 @@ namespace LibDataLayer.DAL.EF_Context
             : base(connectionString)
         {
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }

@@ -396,7 +396,9 @@
     <Content Include="Views\Library\CreateBook.cshtml" />
     <Content Include="Views\Library\Details.cshtml" />
     <Content Include="Views\Library\EditBook.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\SuccessRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
