@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace LibDataLayer.DAL.Repositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<ClientProfile>
     {
         private LibraryContext db;
 
@@ -17,36 +17,36 @@ namespace LibDataLayer.DAL.Repositories
             this.db = context;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<ClientProfile> GetAll()
         {
-            return db.Users.Include(o => o.UserId);
+            return db.ClientProfiles.Include(o => o.Id);
         }
 
-        public User Get(int id)
+        public ClientProfile Get(int id)
         {
-            return db.Users.Find(id);
+            return db.ClientProfiles.Find(id);
         }
 
-        public void Create(User user)
+        public void Create(ClientProfile clientProfile)
         {
-            db.Users.Add(user);
+            db.ClientProfiles.Add(clientProfile);
         }
 
-        public void Update(User user)
+        public void Update(ClientProfile clientProfile)
         {
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(clientProfile).State = EntityState.Modified;
         }
 
-        public IEnumerable<User> Find(Func<User, Boolean> predicate)
+        public IEnumerable<ClientProfile> Find(Func<ClientProfile, Boolean> predicate)
         {
-            return db.Users.Include(o => o.UserId).AsEnumerable().Where(predicate).ToList();
+            return db.ClientProfiles.Include(o => o.Id).AsEnumerable().Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            User user = db.Users.Find(id);
-            if (user != null)
-                db.Users.Remove(user);
+            ClientProfile clientProfile = db.ClientProfiles.Find(id);
+            if (clientProfile != null)
+                db.ClientProfiles.Remove(clientProfile);
         }
     }
 }

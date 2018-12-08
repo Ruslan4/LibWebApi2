@@ -1,68 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using LibBusinessLayer.BIL.DTO;
 using LibBusinessLayer.BIL.Infrastructure;
 using LibBusinessLayer.BIL.Interfaces;
 using LibDataLayer.DAL.Interfaces;
 using LibDataLayer.DAL.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using LibDataLayer.DAL.Entities;
+using Microsoft.AspNet.Identity;
 
 namespace LibBusinessLayer.BIL.Services
 {
     public class UserService : IUserService
     {
-        private IUnitOfWork Database { get; set; }
+        IUnitOfWorkUser Database { get; set; }
 
-        //UserService в конструкторе принимает объект IUnitOfWork, через который идет взаимодействие с уровнем DAL.
-        public UserService(IUnitOfWork uow)
+        public UserService(IUnitOfWorkUser uow)
         {
             Database = uow;
         }
 
-        public UserDTO GetUser(int? id)
+        public async Task<OperationDetails> Create(UserDto userDto)
         {
-            if (id == null)
-                throw new ValidationException("Не установлено id користувача", "");
-            var user = Database.Users.Get(id.Value);
+            ApplicationUser user = await Database.UserManager.FindByEmailAsync(userDto.Email);
             if (user == null)
-                throw new ValidationException("Користувач не знайдений", "");
-
-            return new UserDTO
             {
-                UserId = user.UserId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Age = user.Age,
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber
-            };
+                user = new ApplicationUser { Email = userDto.Email, UserName = userDto.Email };
+                var result = await Database.UserManager.CreateAsync(user, userDto.Password);
+                if (result.Errors.Count() > 0)
+                    return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
+                // добавляем роль
+                await Database.UserManager.AddToRoleAsync(user.Id, userDto.Role);
+                // создаем профиль клиента
+                ClientProfile clientProfile = new ClientProfile
+                {
+                    Id = user.Id,
+                    Name = userDto.Name,
+                    Address = userDto.Address
+                };
+                Database.ClientManager.Create(clientProfile);
+                await Database.SaveAsync();
+                return new OperationDetails(true, "Регистрация успешно пройдена", "");
+            }
+            else
+            {
+                return new OperationDetails(false, "Пользователь с таким логином уже существует", "Email");
+            }
         }
 
-        public IEnumerable<UserDTO> GetUsers()
+        public async Task<ClaimsIdentity> Authenticate(UserDto userDto)
         {
-            // применяем автомаппер для проекции одной коллекции на другую
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<User>, List<UserDTO>>(Database.Users.GetAll());
+            ClaimsIdentity claim = null;
+            // находим пользователя
+            ApplicationUser user = await Database.UserManager.FindAsync(userDto.Email, userDto.Password);
+            // авторизуем его и возвращаем объект ClaimsIdentity
+            if (user != null)
+                claim = await Database.UserManager.CreateIdentityAsync(user,
+                                            DefaultAuthenticationTypes.ApplicationCookie);
+            return claim;
         }
 
-        public void MakeUser(UserDTO userDto)
+        // начальная инициализация бд
+        public async Task SetInitialData(UserDto adminDto, List<string> roles)
         {
-            //TODO: Дополнительная логика
-
-            User user = new User
+            foreach (string roleName in roles)
             {
-                UserId = userDto.UserId,
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
-                Age = userDto.Age,
-                Email = userDto.Email,
-                PhoneNumber = userDto.PhoneNumber
-            };
-            Database.Users.Create(user);
-            Database.Save();
+                var role = await Database.RoleManager.FindByNameAsync(roleName);
+                if (role == null)
+                {
+                    role = new ApplicationRole { Name = roleName };
+                    await Database.RoleManager.CreateAsync(role);
+                }
+            }
+            await Create(adminDto);
         }
 
         public void Dispose()

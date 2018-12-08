@@ -5,7 +5,7 @@ namespace LibDataLayer.DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<User> Users { get; }
+        IRepository<ClientProfile> Users { get; }
         IRepository<Book> Books { get; }
         IRepository<IssuanceOfBooks> IssuanceOfBooks { get; }
         IRepository<CatalogBooks> CatalogBooks { get; }

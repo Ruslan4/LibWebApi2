@@ -19,10 +19,10 @@ namespace LibBusinessLayer.BIL.Services
             Database = uow;
         }
 
-        //Метод MakeUser() получает объект для сохранения с уровня представления и создает по нему объект User и сохраняет его в базу данных.
-        public void MakeUser(UserDTO userDto)
+        //Метод MakeUser() получает объект для сохранения с уровня представления и создает по нему объект ClientProfiles и сохраняет его в базу данных.
+        public void MakeUser(UserDto userDto)
         {
-            Book book = Database.Books.Get(userDto.UserId);
+            Book book = Database.Books.Get(5);
 
             // валидация
             if (book == null)
@@ -30,16 +30,13 @@ namespace LibBusinessLayer.BIL.Services
 
             //TODO: Дополнительная логика
 
-            User user = new User
+            ClientProfile clientProfile = new ClientProfile
             {
                 //BookId = book.Id,
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
-                Age = userDto.Age,
-                Email = userDto.Email,
-                PhoneNumber = userDto.PhoneNumber
+                Address = userDto.Address,
+                Name = userDto.Name
             };
-            Database.Users.Create(user);
+            Database.Users.Create(clientProfile);
             Database.Save();
         }
 
@@ -75,7 +72,7 @@ namespace LibBusinessLayer.BIL.Services
             {
                 Book book = new Book
                 {
-                    BookID = bookDto.BookID,
+                    BookId = bookDto.BookID,
                     Author = bookDto.Author,
                     Name = bookDto.Name,
                     BookСipher = bookDto.BookСipher,
@@ -127,7 +124,7 @@ namespace LibBusinessLayer.BIL.Services
 
             return new BookDTO
             {
-                BookID = book.BookID,
+                BookID = book.BookId,
                 Name = book.Name,
                 Author = book.Author,
                 Pages = book.Pages,

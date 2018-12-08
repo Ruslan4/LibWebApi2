@@ -13,7 +13,7 @@ namespace LibDataLayer.DAL.Models
         public DateTime ReturnDate { get; set; }
 
         public virtual CatalogBooks CatalogBooks { get; set; }
-        public virtual User Users { get; set; }
+        public virtual ClientProfile ClientProfiles { get; set; }
 
         //public IssuanceOfBooks() => DateIssue = DateTime.Now;
     }

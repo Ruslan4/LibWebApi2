@@ -31,15 +31,15 @@ namespace LibDataLayer.DAL.EF_Context
             catalog.ForEach(s => context.CatalogBooks.Add(s));
             context.SaveChanges();
 
-            var users = new List<User>
-            {
-                new User {UserId = 4022, FirstName = "Bob", LastName = "Boo boo" ,Age = 10,Email = "hrtabsr",PhoneNumber = "235324"},
-                new User {UserId = 4041, FirstName = "Bob1", LastName = "Boo boo1",Age = 22,Email = "erger",PhoneNumber = "235324" },
-                new User {UserId = 3141, FirstName = "Bob2", LastName = "Boo boo2",Age = 33,Email = "gerg",PhoneNumber = "235324" },
-                new User {UserId = 2021, FirstName = "Bob3", LastName = "Boo boo3",Age = 44,Email = "hrtabsr",PhoneNumber = "235324" }
-            };
-            users.ForEach(s => context.Users.Add(s));
-            context.SaveChanges();
+            //var users = new List<ClientProfiles>
+            //{
+            //    new ClientProfiles {UserId = 4022, FirstName = "Bob", LastName = "Boo boo" ,Age = 10,Email = "hrtabsr",PhoneNumber = "235324"},
+            //    new ClientProfiles {UserId = 4041, FirstName = "Bob1", LastName = "Boo boo1",Age = 22,Email = "erger",PhoneNumber = "235324" },
+            //    new ClientProfiles {UserId = 3141, FirstName = "Bob2", LastName = "Boo boo2",Age = 33,Email = "gerg",PhoneNumber = "235324" },
+            //    new ClientProfiles {UserId = 2021, FirstName = "Bob3", LastName = "Boo boo3",Age = 44,Email = "hrtabsr",PhoneNumber = "235324" }
+            //};
+            //users.ForEach(s => context.Users.Add(s));
+            //context.SaveChanges();
 
             var issuanceOfBooks = new List<IssuanceOfBooks>
             {
