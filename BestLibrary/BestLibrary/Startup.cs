@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LibBusinessLayer.BIL.Interfaces;
+﻿using LibBusinessLayer.BIL.Interfaces;
 using LibBusinessLayer.BIL.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;

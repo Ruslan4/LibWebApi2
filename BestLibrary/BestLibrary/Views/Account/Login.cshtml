@@ -1,0 +1,54 @@
+﻿@Styles.Render("~/Content/LoginReg.css")
+
+@model BestLibrary.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <body>
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <h2 class="card-header text-center">Login to Library</h2>
+                <form name="form">
+
+                    <label class="col-form-label" for="Username">Email</label>
+                    <span class="field-validation-valid" data-valmsg-for="Username" data-valmsg-replace="true"></span>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+
+                    <label class="col-form-label" for="Password">Password</label>
+                    <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                    <div class="form-group clearfix">
+                        <div class="float-left">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"
+                                       id="RememberMe"
+                                       name="RememberMe"
+                                       class="custom-control-input"
+                                       value="true">
+                                <label class="custom-control-label" for="RememberMe">Remember me</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="align-content-center">
+                        <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Login" />
+                    </div>
+                </form>
+                <div class="text-center">
+                    Never used Library before?
+                </div>
+                <div class="text-center">
+                    <strong><a href="~/Account/Register">Sign Up</a></strong>
+                </div>
+            </div>
+        </div>
+    </body>
+}

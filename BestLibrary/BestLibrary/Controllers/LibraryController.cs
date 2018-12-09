@@ -12,6 +12,13 @@ namespace BestLibrary.Controllers
 {
     public class LibraryController : Controller
     {
+        [HttpGet]
+        public ActionResult ElectronicSubscriptions()
+        {
+            return View();
+        }
+
+
         // GET: Library
         public ActionResult GetAllBooks()
         {

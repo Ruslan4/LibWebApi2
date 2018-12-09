@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
-namespace LibDataLayer.DAL.Models
+namespace BestLibrary.Models
 {
-    public class IssuanceOfBooks
+    public class IssuanceOfBooksViewModel
     {
         public int IssuanceOfBooksId { get; set; }
 
@@ -13,9 +13,6 @@ namespace LibDataLayer.DAL.Models
         public DateTime ReturnDate { get; set; }
 
         public int CatalogBooksId { get; set; }
-        public virtual CatalogBooks CatalogBooks { get; set; }
-
-        public virtual ClientProfile ClientProfile { get; set; }
 
         //public IssuanceOfBooks() => DateIssue = DateTime.Now;
     }

@@ -32,14 +32,14 @@ namespace BestLibrary.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Index(LoginModel model)
+        public async Task<ActionResult> Login(LoginModel model)
         {
             await SetInitialDataAsync();
             if (ModelState.IsValid)
@@ -48,7 +48,7 @@ namespace BestLibrary.Controllers
                 ClaimsIdentity claim = await UserService.Authenticate(userDto);
                 if (claim == null)
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль.");
+                    ModelState.AddModelError("", "Wrong login or password.");
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace BestLibrary.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("ElectronicSubscriptions", "Library");
                 }
             }
             return View(model);
@@ -66,7 +66,7 @@ namespace BestLibrary.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult Register()
@@ -91,7 +91,7 @@ namespace BestLibrary.Controllers
                 };
                 OperationDetails operationDetails = await UserService.Create(userDto);
                 if (operationDetails.Succedeed)
-                    return View("SuccessRegister");
+                    return RedirectToAction("ElectronicSubscriptions", "Library");
                 else
                     ModelState.AddModelError(operationDetails.Property, operationDetails.Message);
             }
@@ -103,9 +103,9 @@ namespace BestLibrary.Controllers
             {
                 Email = "somemail@mail.ru",
                 UserName = "somemail@mail.ru",
-                Password = "ad46D_ewr3",
-                Name = "Семен Семенович Горбунков",
-                Address = "ул. Спортивная, д.30, кв.75",
+                Password = "1234567",
+                Name = "Bob Bobo",
+                Address = "str. Tratata, h.30",
                 Role = "admin",
             }, new List<string> { "user", "admin" });
         }
