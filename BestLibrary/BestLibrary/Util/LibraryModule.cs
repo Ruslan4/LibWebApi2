@@ -15,6 +15,7 @@ namespace BestLibrary.Util
         {
             Bind<ILibraryService>().To<LibraryService>();
             Bind<IUserService>().To<UserService>();
+            Bind<IIssuanceOfBooksService>().To<IssuanceOfBooksService>();
         }
     }
 }

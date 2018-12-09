@@ -11,8 +11,8 @@ namespace LibBusinessLayer.BIL.Interfaces
 {
     public interface IUserService : IDisposable
     {
-        Task<OperationDetails> Create(UserDto userDto);
-        Task<ClaimsIdentity> Authenticate(UserDto userDto);
-        Task SetInitialData(UserDto adminDto, List<string> roles);
+        Task<OperationDetails> Create(ClientProfileDto clientProfileDto);
+        Task<ClaimsIdentity> Authenticate(ClientProfileDto clientProfileDto);
+        Task SetInitialData(ClientProfileDto adminDto, List<string> roles);
     }
 }

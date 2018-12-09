@@ -20,7 +20,7 @@ namespace LibBusinessLayer.BIL.Services
         }
 
         //Метод MakeUser() получает объект для сохранения с уровня представления и создает по нему объект ClientProfiles и сохраняет его в базу данных.
-        public void MakeUser(UserDto userDto)
+        public void MakeUser(ClientProfileDto clientProfileDto)
         {
             Book book = Database.Books.Get(5);
 
@@ -33,10 +33,10 @@ namespace LibBusinessLayer.BIL.Services
             ClientProfile clientProfile = new ClientProfile
             {
                 //BookId = book.Id,
-                Address = userDto.Address,
-                Name = userDto.Name
+                Address = clientProfileDto.Address,
+                Name = clientProfileDto.Name
             };
-            Database.Users.Create(clientProfile);
+            Database.ClientProfiles.Create(clientProfile);
             Database.Save();
         }
 

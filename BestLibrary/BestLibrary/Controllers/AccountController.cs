@@ -44,8 +44,8 @@ namespace BestLibrary.Controllers
             await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                UserDto userDto = new UserDto { Email = model.Email, Password = model.Password };
-                ClaimsIdentity claim = await UserService.Authenticate(userDto);
+                ClientProfileDto clientProfileDto = new ClientProfileDto { Email = model.Email, Password = model.Password };
+                ClaimsIdentity claim = await UserService.Authenticate(clientProfileDto);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Wrong login or password.");
@@ -81,7 +81,7 @@ namespace BestLibrary.Controllers
             await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                UserDto userDto = new UserDto
+                ClientProfileDto clientProfileDto = new ClientProfileDto
                 {
                     Email = model.Email,
                     Password = model.Password,
@@ -89,7 +89,7 @@ namespace BestLibrary.Controllers
                     Name = model.Name,
                     Role = "user"
                 };
-                OperationDetails operationDetails = await UserService.Create(userDto);
+                OperationDetails operationDetails = await UserService.Create(clientProfileDto);
                 if (operationDetails.Succedeed)
                     return RedirectToAction("ElectronicSubscriptions", "Library");
                 else
@@ -99,7 +99,7 @@ namespace BestLibrary.Controllers
         }
         private async Task SetInitialDataAsync()
         {
-            await UserService.SetInitialData(new UserDto
+            await UserService.SetInitialData(new ClientProfileDto
             {
                 Email = "somemail@mail.ru",
                 UserName = "somemail@mail.ru",

@@ -9,7 +9,6 @@ namespace LibBusinessLayer.BIL.Interfaces
 {
     public interface ILibraryService
     {
-        void MakeUser(UserDto userDto);
         BookDTO GetBook(int? id);
         IEnumerable<BookDTO> GetBooks();
         bool DeleteBook(int id);

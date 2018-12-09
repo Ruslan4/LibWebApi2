@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<BestLibrary.Models.BookViewModel>
 
-@{
-
+@using (Html.BeginForm())
+{
     ViewBag.Title = "GetAllBooks";
-}
-
-<body>
+    @Html.AntiForgeryToken()
+    <body>
     <div class="card text-white bg-dark mb-3">
 
         <form action="~/Library/CreateBook" method="get">
             <div class="align-content-center">
-                <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Create New Book" onclick="redirect" />
+                <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Create New Book" onclick="redirect"/>
             </div>
         </form>
 
@@ -71,14 +70,15 @@
                             @Html.DisplayFor(modelItem => item.PrintDate)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "EditBook", new { id = item.BookID, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.BookID }) |
-                            @Html.ActionLink("Take", "~/Library/Details", new { id = item.BookID })
+                            @Html.ActionLink("Edit", "EditBook", new {id = item.BookID, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item}) |
+                            @Html.ActionLink("Details", "Details", new {id = item.BookID}) |
+                            @Html.ActionLink("Delete", "Delete", new {id = item.BookID}) |
+                            @Html.ActionLink("Take", "Take", new {id = item.BookID})
                         </td>
                     </tr>
                 }
             </table>
         </div>
     </div>
-</body>
+    </body>
+}

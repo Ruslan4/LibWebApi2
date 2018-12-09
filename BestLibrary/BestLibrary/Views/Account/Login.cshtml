@@ -1,15 +1,14 @@
 ﻿@Styles.Render("~/Content/LoginReg.css")
 
 @model BestLibrary.Models.LoginModel
-@{
-    ViewBag.Title = "Login";
-}
+
 @using (Html.BeginForm())
 {
+    ViewBag.Title = "Login";
     @Html.AntiForgeryToken()
 
     <body>
-        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
             <div class="card-body">
                 <h2 class="card-header text-center">Login to Library</h2>
                 <form name="form">

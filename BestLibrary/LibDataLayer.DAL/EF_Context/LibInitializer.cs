@@ -21,7 +21,7 @@ namespace LibDataLayer.DAL.EF_Contextz
 
             var catalog = new List<CatalogBooks>
             {
-                new CatalogBooks {CatalogBooksId = 4022, BookId = 1, HaveABook = true },
+                new CatalogBooks {CatalogBooksId = 4022, BookId = 1, HaveABook = true},
                 new CatalogBooks {CatalogBooksId = 4041, BookId = 2, HaveABook = true },
                 new CatalogBooks {CatalogBooksId = 3141, BookId = 3, HaveABook = true },
                 new CatalogBooks {CatalogBooksId = 2021, BookId = 1, HaveABook = true },
@@ -39,18 +39,18 @@ namespace LibDataLayer.DAL.EF_Contextz
             //    new ClientProfiles {UserId = 3141, FirstName = "Bob2", LastName = "Boo boo2",Age = 33,Email = "gerg",PhoneNumber = "235324" },
             //    new ClientProfiles {UserId = 2021, FirstName = "Bob3", LastName = "Boo boo3",Age = 44,Email = "hrtabsr",PhoneNumber = "235324" }
             //};
-            //users.ForEach(s => context.Users.Add(s));
+            //users.ForEach(s => context.ClientProfiles.Add(s));
             //context.SaveChanges();
 
             var issuanceOfBooks = new List<IssuanceOfBooks>
             {
-                new IssuanceOfBooks{CatalogBooksId=1,/*UserId=4022,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=1,/*UserId=4022,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=1,/*UserId=4041,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=2,/*UserId=4041,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=2,/*UserId=3141,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=2,/*UserId=3141,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
-                new IssuanceOfBooks{CatalogBooksId=3,/*UserId=2021,*/ DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") }
+                new IssuanceOfBooks{CatalogBooksId=1, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=1, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=1, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=2, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=2, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=2, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=3, DateIssue = DateTime.Parse("2005-09-01"), ReturnDate = DateTime.Parse("2005-09-01") }
             };
             issuanceOfBooks.ForEach(s => context.IssuanceOfBooks.Add(s));
             context.SaveChanges();

@@ -13,7 +13,7 @@ namespace BestLibrary.Models
         public DateTime ReturnDate { get; set; }
 
         public int CatalogBooksId { get; set; }
-
+        public string ClientProfileId { get; set; }
         //public IssuanceOfBooks() => DateIssue = DateTime.Now;
     }
 }

@@ -30,7 +30,7 @@ namespace LibDataLayer.DAL.Repositories
             }
         }
 
-        public IRepository<ClientProfile> Users
+        public IRepository<ClientProfile> ClientProfiles
         {
             get
             {

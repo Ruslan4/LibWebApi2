@@ -24,15 +24,15 @@
 //        [HttpGet]
 //        public UserViewModel GetUsers()
 //        {
-//            IEnumerable<UserDto> bookDtos = _userService.GetUsers();
-//            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserDto, UserViewModel>()).CreateMapper();
-//            var users = mapper.Map<IEnumerable<UserDto>, List<UserViewModel>>(bookDtos);
+//            IEnumerable<ClientProfileDto> bookDtos = _userService.GetUsers();
+//            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ClientProfileDto, UserViewModel>()).CreateMapper();
+//            var users = mapper.Map<IEnumerable<ClientProfileDto>, List<UserViewModel>>(bookDtos);
 //            var user = users.ToArray().First();
 //            return user;
 //        }
 
 //        // GET: api/User/5
-//        public UserDto GetUser(int id)
+//        public ClientProfileDto GetUser(int id)
 //        {
 //            var user = _userService.GetUser(id);
 //            return user;

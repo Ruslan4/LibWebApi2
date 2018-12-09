@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.DTO
 {
-    public class UserDto
+    public class ClientProfileDto
     {
         public string Id { get; set; }
         public string Email { get; set; }
