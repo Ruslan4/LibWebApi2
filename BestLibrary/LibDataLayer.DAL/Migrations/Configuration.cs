@@ -1,18 +1,27 @@
-锘縰sing System;
 using System.Collections.Generic;
 using LibDataLayer.DAL.Models;
 
-namespace LibDataLayer.DAL.EF_Context
+namespace LibDataLayer.DAL.Migrations
 {
-    public class LibInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<LibraryContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<LibDataLayer.DAL.EF_Context.LibraryContext>
     {
-        protected override void Seed(LibraryContext context)
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+
+        protected override void Seed(LibDataLayer.DAL.EF_Context.LibraryContext context)
         {
             var books = new List<Book> {
-                new Book {/*BookID = 11,*/ Book小ipher = 5532532, Name = "Alexander", Author = "Alexander", Pages = 500, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 5 },
-                new Book {/*BookID = 22,*/ Book小ipher = 7536364, Name = "Best book", Author = "Bob", Pages = 600, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 10 },
-                new Book {/*BookID = 33,*/ Book小ipher = 7867457, Name = "Best book2", Author = "Another Bob", Pages = 700, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 50 },
-                new Book {/*BookID = 44,*/ Book小ipher = 2457745, Name = "Best book3", Author = "Another Elis", Pages = 900, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 3 }
+                new Book {/*BookID = 11,*/ Book裪pher = 5532532, Name = "Alexander", Author = "Alexander", Pages = 500, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 5 },
+                new Book {/*BookID = 22,*/ Book裪pher = 7536364, Name = "Best book", Author = "Bob", Pages = 600, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 10 },
+                new Book {/*BookID = 33,*/ Book裪pher = 7867457, Name = "Best book2", Author = "Another Bob", Pages = 700, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 50 },
+                new Book {/*BookID = 44,*/ Book裪pher = 2457745, Name = "Best book3", Author = "Another Elis", Pages = 900, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 3 }
             };
 
             books.ForEach(s => context.Books.Add(s));
