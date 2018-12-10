@@ -65,9 +65,6 @@ namespace BestLibrary.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<ILibraryService>().To<LibraryService>();
-            //kernel.Bind<IUserService>().To<UserService>();
-
         }        
     }
 }
