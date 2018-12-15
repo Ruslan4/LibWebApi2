@@ -10,7 +10,6 @@ namespace LibDataLayer.DAL.Models
         [Key]
         [ForeignKey("ApplicationUser")]
         public string Id { get; set; }
-        public string ClientProfileId { get; set; }
 
         public string Name { get; set; }
         public string Address { get; set; }

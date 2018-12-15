@@ -9,11 +9,11 @@ namespace LibBusinessLayer.BIL.Interfaces
 {
     public interface ILibraryService
     {
-        BookDTO GetBook(int? id);
-        IEnumerable<BookDTO> GetBooks();
+        BookDto GetBook(int? id);
+        IEnumerable<BookDto> GetBooks();
         bool DeleteBook(int id);
-        bool AddBook(BookDTO bookDto);
-        bool UpdateBook(BookDTO bookDto);
+        bool AddBook(BookDto bookDto);
+        bool UpdateBook(BookDto bookDto);
         void Dispose();
     }
 }

@@ -9,10 +9,10 @@ namespace LibBusinessLayer.BIL.Interfaces
 {
     public interface IIssuanceOfBooksService
     {
-        IssuanceOfBooksDTO GetIssuance(int? id);
-        IEnumerable<IssuanceOfBooksDTO> GetIssuances();
+        IssuanceOfBooksDto GetIssuance(int? id);
+        IEnumerable<IssuanceOfBooksDto> GetIssuances();
         bool ReturnIssuance(int id);
-        bool AddIssuance(IssuanceOfBooksDTO issuanceOfBooksDTO);
+        bool CreateIssuance(IssuanceOfBooksDto issuanceOfBooksDto);
         void Dispose();
     }
 }

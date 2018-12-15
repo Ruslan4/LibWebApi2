@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using LibBusinessLayer.BIL.DTO;
 using LibBusinessLayer.BIL.Infrastructure;
 using LibBusinessLayer.BIL.Interfaces;
 using LibDataLayer.DAL.Interfaces;
 using LibDataLayer.DAL.Models;
+using System;
+using System.Collections.Generic;
 
 namespace LibBusinessLayer.BIL.Services
 {
@@ -22,7 +19,7 @@ namespace LibBusinessLayer.BIL.Services
             Database = uow;
         }
 
-        public bool AddIssuance(IssuanceOfBooksDTO issuanceOfBooksDto)
+        public bool CreateIssuance(IssuanceOfBooksDto issuanceOfBooksDto)
         {
             bool status;
             try
@@ -33,7 +30,8 @@ namespace LibBusinessLayer.BIL.Services
                     CatalogBooksId = issuanceOfBooksDto.CatalogBooksId,
                     DateIssue = issuanceOfBooksDto.DateIssue,
                     ReturnDate = issuanceOfBooksDto.ReturnDate,
-                    IssuanceOfBooksId = issuanceOfBooksDto.IssuanceOfBooksId
+                    Id = issuanceOfBooksDto.Id,
+                    ClientProfileId = issuanceOfBooksDto.ClientProfileId
                 };
                 Database.IssuanceOfBooks.Create(issuance);
                 Database.Save();
@@ -46,11 +44,11 @@ namespace LibBusinessLayer.BIL.Services
             return status;
         }
 
-        public IEnumerable<IssuanceOfBooksDTO> GetIssuances()
+        public IEnumerable<IssuanceOfBooksDto> GetIssuances()
         {
             // применяем автомаппер для проекции одной коллекции на другую
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooks, IssuanceOfBooksDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<IssuanceOfBooks>, List<IssuanceOfBooksDTO>>(Database.IssuanceOfBooks.GetAll());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooks, IssuanceOfBooksDto>()).CreateMapper();
+            return mapper.Map<IEnumerable<IssuanceOfBooks>, List<IssuanceOfBooksDto>>(Database.IssuanceOfBooks.GetAll());
         }
 
         public bool ReturnIssuance(int id)
@@ -69,7 +67,7 @@ namespace LibBusinessLayer.BIL.Services
             return status;
         }
 
-        public IssuanceOfBooksDTO GetIssuance(int? id)
+        public IssuanceOfBooksDto GetIssuance(int? id)
         {
             if (id == null)
                 throw new ValidationException("Не установлено id книги", "");
@@ -77,11 +75,12 @@ namespace LibBusinessLayer.BIL.Services
             if (issuanceOfBooks == null)
                 throw new ValidationException("Книга не найдена", "");
 
-            return new IssuanceOfBooksDTO
+            return new IssuanceOfBooksDto
             {
-                IssuanceOfBooksId = issuanceOfBooks.IssuanceOfBooksId,
+                Id = issuanceOfBooks.Id,
                 ReturnDate = issuanceOfBooks.ReturnDate,
-                CatalogBooksId = issuanceOfBooks.CatalogBooksId
+                CatalogBooksId = issuanceOfBooks.CatalogBooksId,
+                ClientProfileId = issuanceOfBooks.ClientProfileId
             };
         }
 

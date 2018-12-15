@@ -19,7 +19,7 @@
                 <table class="table">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.BookID)
+                            @Html.DisplayNameFor(model => model.Id)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.BookСipher)
@@ -46,7 +46,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.BookID)
+                                @Html.DisplayFor(modelItem => item.Id)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.BookСipher)
@@ -67,10 +67,10 @@
                                 @Html.DisplayFor(modelItem => item.PrintDate)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "EditBook", new { id = item.BookID, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.BookID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.BookID }) |
-                                @Html.ActionLink("Take", "Take", new { id = item.BookID })
+                                @Html.ActionLink("Edit", "EditBook", new { id = item.Id, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                                @Html.ActionLink("Take", "Take", new { id = item.Id })
                             </td>
                         </tr>
                     }

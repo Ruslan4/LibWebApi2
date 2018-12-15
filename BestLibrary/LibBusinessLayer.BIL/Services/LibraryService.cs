@@ -32,7 +32,7 @@ namespace LibBusinessLayer.BIL.Services
 
             ClientProfile clientProfile = new ClientProfile
             {
-                //BookId = book.Id,
+                //Id = book.Id,
                 Address = clientProfileDto.Address,
                 Name = clientProfileDto.Name
             };
@@ -40,7 +40,7 @@ namespace LibBusinessLayer.BIL.Services
             Database.Save();
         }
 
-        public bool AddBook(BookDTO bookDto)
+        public bool AddBook(BookDto bookDto)
         {
             bool status;
             try
@@ -65,14 +65,14 @@ namespace LibBusinessLayer.BIL.Services
             return status;
         }
 
-        public bool UpdateBook(BookDTO bookDto)
+        public bool UpdateBook(BookDto bookDto)
         {
             bool status = false;
             try
             {
                 Book book = new Book
                 {
-                    BookId = bookDto.BookID,
+                    Id = bookDto.Id,
                     Author = bookDto.Author,
                     Name = bookDto.Name,
                     BookСipher = bookDto.BookСipher,
@@ -91,11 +91,11 @@ namespace LibBusinessLayer.BIL.Services
             return status;
         }
 
-        public IEnumerable<BookDTO> GetBooks()
+        public IEnumerable<BookDto> GetBooks()
         {
             // применяем автомаппер для проекции одной коллекции на другую
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Book, BookDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Book>, List<BookDTO>>(Database.Books.GetAll());
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Book, BookDto>()).CreateMapper();
+            return mapper.Map<IEnumerable<Book>, List<BookDto>>(Database.Books.GetAll());
         }
 
         public bool DeleteBook(int id)
@@ -114,7 +114,7 @@ namespace LibBusinessLayer.BIL.Services
             return status;
         }
 
-        public BookDTO GetBook(int? id)
+        public BookDto GetBook(int? id)
         {
             if (id == null)
                 throw new ValidationException("Не установлено id книги", "");
@@ -122,9 +122,9 @@ namespace LibBusinessLayer.BIL.Services
             if (book == null)
                 throw new ValidationException("Книга не найдена", "");
 
-            return new BookDTO
+            return new BookDto
             {
-                BookID = book.BookId,
+                Id = book.Id,
                 Name = book.Name,
                 Author = book.Author,
                 Pages = book.Pages,

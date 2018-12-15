@@ -7,7 +7,7 @@ namespace BestLibrary.Models
 {
     public class BookViewModel
     {
-        public int BookID { get; set; }
+        public int Id { get; set; }
         public int BookСipher { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }

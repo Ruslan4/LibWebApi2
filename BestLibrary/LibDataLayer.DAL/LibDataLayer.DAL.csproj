@@ -83,10 +83,6 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IUnitOfWorkUser.cs" />
-    <Compile Include="Migrations\201812101140516_BestLib.cs" />
-    <Compile Include="Migrations\201812101140516_BestLib.Designer.cs">
-      <DependentUpon>201812101140516_BestLib.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\CatalogBooks.cs" />
@@ -104,11 +100,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812101140516_BestLib.resx">
-      <DependentUpon>201812101140516_BestLib.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

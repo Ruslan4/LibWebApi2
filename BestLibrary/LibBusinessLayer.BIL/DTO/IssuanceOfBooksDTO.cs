@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.DTO
 {
-    public class IssuanceOfBooksDTO
+    public class IssuanceOfBooksDto
     {
-        public int IssuanceOfBooksId { get; set; }
+        public int Id { get; set; }
 
         public DateTime DateIssue { get; set; }
         public DateTime ReturnDate { get; set; }
 
         public int CatalogBooksId { get; set; }
+        public int ClientProfileId { get; set; }
 
-        public string ClientProfileId { get; set; }
-        public IssuanceOfBooksDTO() => DateIssue = DateTime.Now;
+        //public IssuanceOfBooksDto() => DateIssue = DateTime.Now;
     }
 }

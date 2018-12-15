@@ -21,9 +21,9 @@ namespace BestLibrary.Controllers
         [HttpGet]
         public JsonResult<List<BookViewModel>> GetAllBooks()
         {
-            IEnumerable<BookDTO> bookDtos = _libraryService.GetBooks();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
-            var books = mapper.Map<IEnumerable<BookDTO>, List<BookViewModel>>(bookDtos);
+            IEnumerable<BookDto> bookDtos = _libraryService.GetBooks();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDto, BookViewModel>()).CreateMapper();
+            var books = mapper.Map<IEnumerable<BookDto>, List<BookViewModel>>(bookDtos);
             return Json(books);
         }
 
@@ -31,9 +31,9 @@ namespace BestLibrary.Controllers
         [HttpGet]
         public JsonResult<BookViewModel> GetBook(int id)
         {
-            BookDTO bookDtos = _libraryService.GetBook(id);
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
-            var books = mapper.Map<BookDTO, BookViewModel>(bookDtos);
+            BookDto bookDtos = _libraryService.GetBook(id);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDto, BookViewModel>()).CreateMapper();
+            var books = mapper.Map<BookDto, BookViewModel>(bookDtos);
             return Json<BookViewModel>(books);
         }
 
@@ -45,7 +45,7 @@ namespace BestLibrary.Controllers
             {
                 try
                 {
-                    var bookDto = new BookDTO()
+                    var bookDto = new BookDto()
                     {
                         Author = book.Author,
                         Name = book.Name,
@@ -73,9 +73,9 @@ namespace BestLibrary.Controllers
             {
                 try
                 {
-                    var bookDto = new BookDTO()
+                    var bookDto = new BookDto()
                     {
-                        BookID = book.BookID,
+                        Id = book.Id,
                         Author = book.Author,
                         Name = book.Name,
                         BookСipher = book.BookСipher,
@@ -94,7 +94,6 @@ namespace BestLibrary.Controllers
             return status;
 
         }
-
 
         [HttpDelete]
         public bool DeleteBook(int id)

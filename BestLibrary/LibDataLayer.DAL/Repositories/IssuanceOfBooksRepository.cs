@@ -10,7 +10,7 @@ namespace LibDataLayer.DAL.Repositories
 {
     public class IssuanceOfBooksRepository : IRepository<IssuanceOfBooks>
     {
-        private LibraryContext db;
+        private readonly LibraryContext db;
 
         public IssuanceOfBooksRepository(LibraryContext context)
         {
@@ -37,7 +37,7 @@ namespace LibDataLayer.DAL.Repositories
             db.Entry(issuanceOfBooks).State = EntityState.Modified;
         }
 
-        public IEnumerable<IssuanceOfBooks> Find(Func<IssuanceOfBooks, Boolean> predicate)
+        public IEnumerable<IssuanceOfBooks> Find(Func<IssuanceOfBooks, bool> predicate)
         {
             return db.IssuanceOfBooks.Where(predicate).ToList();
         }
