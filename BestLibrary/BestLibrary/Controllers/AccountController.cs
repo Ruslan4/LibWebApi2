@@ -107,6 +107,7 @@ namespace BestLibrary.Controllers
                 Name = "Bob Bobo",
                 Address = "str. Tratata, h.30",
                 Role = "admin",
+                
             }, new List<string> { "user", "admin" });
         }
     }

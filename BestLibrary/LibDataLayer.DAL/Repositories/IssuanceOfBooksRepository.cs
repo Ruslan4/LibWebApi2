@@ -10,43 +10,43 @@ namespace LibDataLayer.DAL.Repositories
 {
     public class IssuanceOfBooksRepository : IRepository<IssuanceOfBooks>
     {
-        private readonly LibraryContext db;
+        private readonly LibraryContext _db;
 
         public IssuanceOfBooksRepository(LibraryContext context)
         {
-            this.db = context;
+            this._db = context;
         }
 
         public IEnumerable<IssuanceOfBooks> GetAll()
         {
-            return db.IssuanceOfBooks;
+            return _db.IssuanceOfBooks;
         }
 
         public IssuanceOfBooks Get(int id)
         {
-            return db.IssuanceOfBooks.Find(id);
+            return _db.IssuanceOfBooks.Find(id);
         }
 
         public void Create(IssuanceOfBooks issuanceOfBooks)
         {
-            db.IssuanceOfBooks.Add(issuanceOfBooks);
+            _db.IssuanceOfBooks.Add(issuanceOfBooks);
         }
 
         public void Update(IssuanceOfBooks issuanceOfBooks)
         {
-            db.Entry(issuanceOfBooks).State = EntityState.Modified;
+            _db.Entry(issuanceOfBooks).State = EntityState.Modified;
         }
 
         public IEnumerable<IssuanceOfBooks> Find(Func<IssuanceOfBooks, bool> predicate)
         {
-            return db.IssuanceOfBooks.Where(predicate).ToList();
+            return _db.IssuanceOfBooks.Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            IssuanceOfBooks issuanceOfBooks = db.IssuanceOfBooks.Find(id);
+            var issuanceOfBooks = _db.IssuanceOfBooks.Find(id);
             if (issuanceOfBooks != null)
-                db.IssuanceOfBooks.Remove(issuanceOfBooks);
+                _db.IssuanceOfBooks.Remove(issuanceOfBooks);
         }
     }
 }

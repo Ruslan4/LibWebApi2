@@ -30,8 +30,8 @@ namespace LibBusinessLayer.BIL.Services
                     CatalogBooksId = issuanceOfBooksDto.CatalogBooksId,
                     DateIssue = issuanceOfBooksDto.DateIssue,
                     ReturnDate = issuanceOfBooksDto.ReturnDate,
-                    Id = issuanceOfBooksDto.Id,
-                    ClientProfileId = issuanceOfBooksDto.ClientProfileId
+                    Id = issuanceOfBooksDto.Id
+                    //ClientProfileId = issuanceOfBooksDto.ClientProfileId
                 };
                 Database.IssuanceOfBooks.Create(issuance);
                 Database.Save();
@@ -79,8 +79,8 @@ namespace LibBusinessLayer.BIL.Services
             {
                 Id = issuanceOfBooks.Id,
                 ReturnDate = issuanceOfBooks.ReturnDate,
-                CatalogBooksId = issuanceOfBooks.CatalogBooksId,
-                ClientProfileId = issuanceOfBooks.ClientProfileId
+                CatalogBooksId = issuanceOfBooks.CatalogBooksId
+                //ClientProfileId = issuanceOfBooks.ClientProfileId
             };
         }
 

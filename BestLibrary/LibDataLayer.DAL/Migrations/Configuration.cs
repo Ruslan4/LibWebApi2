@@ -1,14 +1,8 @@
-using System.Collections.Generic;
-using LibDataLayer.DAL.Models;
-
 namespace LibDataLayer.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<LibDataLayer.DAL.EF_Context.LibraryContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EF_Context.LibraryContext>
     {
         public Configuration()
         {
@@ -16,17 +10,17 @@ namespace LibDataLayer.DAL.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(LibDataLayer.DAL.EF_Context.LibraryContext context)
+        protected override void Seed(EF_Context.LibraryContext context)
         {
-            var books = new List<Book> {
-                new Book { Book—ipher = 5532532, Name = "Alexander", Author = "Alexander", Pages = 500, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 5 },
-                new Book { Book—ipher = 7536364, Name = "Best book", Author = "Bob", Pages = 600, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 10 },
-                new Book { Book—ipher = 7867457, Name = "Best book2", Author = "Another Bob", Pages = 700, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 50 },
-                new Book { Book—ipher = 2457745, Name = "Best book3", Author = "Another Elis", Pages = 900, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 3 }
-            };
+            //var books = new List<Book> {
+            //    new Book { Book—ipher = 5532532, Name = "Alexander", Author = "Alexander", Pages = 500, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 5 },
+            //    new Book { Book—ipher = 7536364, Name = "Best book", Author = "Bob", Pages = 600, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 10 },
+            //    new Book { Book—ipher = 7867457, Name = "Best book2", Author = "Another Bob", Pages = 700, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 50 },
+            //    new Book { Book—ipher = 2457745, Name = "Best book3", Author = "Another Elis", Pages = 900, PrintDate = DateTime.Parse("2005-09-01"), CountBook = 3 }
+            //};
 
-            books.ForEach(s => context.Books.Add(s));
-            context.SaveChanges();
+            //books.ForEach(s => context.Books.Add(s));
+            //context.SaveChanges();
 
             //var catalog = new List<CatalogBooks>
             //{
