@@ -13,24 +13,14 @@ using System.Web.Mvc;
 
 namespace BestLibrary.Controllers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Controller for registration and authentication functionality.
+    /// </summary>
     public class AccountController : Controller
     {
-        private IUserService UserService
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<IUserService>();
-            }
-        }
-        
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        private IUserService UserService => HttpContext.GetOwinContext().GetUserManager<IUserService>();
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
 
         [HttpGet]
         public ActionResult Login()
@@ -38,6 +28,10 @@ namespace BestLibrary.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Authenticates as an incoming Login model.
+        /// </summary>
+        /// <param name="model">Login Model.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginModel model)
@@ -45,8 +39,8 @@ namespace BestLibrary.Controllers
             await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                ClientProfileDto clientProfileDto = new ClientProfileDto { Email = model.Email, Password = model.Password };
-                ClaimsIdentity claim = await UserService.Authenticate(clientProfileDto);
+                var clientProfileDto = new ClientProfileDto { Email = model.Email, Password = model.Password };
+                var claim = await UserService.Authenticate(clientProfileDto);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Wrong login or password.");
@@ -63,7 +57,9 @@ namespace BestLibrary.Controllers
             }
             return View(model);
         }
-
+        /// <summary>
+        /// Logout and redirect to ~/Account/Login/
+        /// </summary>
         [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
@@ -76,7 +72,10 @@ namespace BestLibrary.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Creates a new user by the incoming model.
+        /// </summary>
+        /// <param name="model">Register Model.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
@@ -84,7 +83,7 @@ namespace BestLibrary.Controllers
             await SetInitialDataAsync();
             if (ModelState.IsValid)
             {
-                ClientProfileDto clientProfileDto = new ClientProfileDto
+                var clientProfileDto = new ClientProfileDto
                 {
                     Email = model.Email,
                     Password = model.Password,
@@ -92,7 +91,7 @@ namespace BestLibrary.Controllers
                     Name = model.Name,
                     Role = "user"
                 };
-                OperationDetails operationDetails = await UserService.Create(clientProfileDto);
+                var operationDetails = await UserService.Create(clientProfileDto);
                 if (operationDetails.Succedeed)
                     return RedirectToAction("ElectronicSubscriptions", "Library");
                 else
@@ -100,6 +99,10 @@ namespace BestLibrary.Controllers
             }
             return View(model);
         }
+
+        /// <summary>
+        /// Initial user initialization.
+        /// </summary>
         private async Task SetInitialDataAsync()
         {
             await UserService.SetInitialData(new ClientProfileDto

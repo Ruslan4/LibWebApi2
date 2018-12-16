@@ -8,39 +8,51 @@ using System.Web.Http.Results;
 
 namespace BestLibrary.Controllers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Controller for CRUD book operations in the library.
+    /// </summary>
     public class BookController : ApiController
-    {  
-        readonly ILibraryService _libraryService;
+    {
+        private readonly ILibraryService _libraryService;
 
         public BookController(ILibraryService serv)
         {
             _libraryService = serv;
         }
-
+        /// <summary>
+        /// Get all book from database.
+        /// </summary>
         // GET: api/Book
         [HttpGet]
         public JsonResult<List<BookViewModel>> GetAllBooks()
         {
-            IEnumerable<BookDto> bookDtos = _libraryService.GetBooks();
+            var bookDtos = _libraryService.GetBooks();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDto, BookViewModel>()).CreateMapper();
             var books = mapper.Map<IEnumerable<BookDto>, List<BookViewModel>>(bookDtos);
             return Json(books);
         }
-
+        /// <summary>
+        /// Get book from database.
+        /// </summary>
+        /// <param name="id">Book ID </param>
         // GET: api/Book/id
         [HttpGet]
         public JsonResult<BookViewModel> GetBook(int id)
         {
-            BookDto bookDtos = _libraryService.GetBook(id);
+            var bookDtos = _libraryService.GetBook(id);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDto, BookViewModel>()).CreateMapper();
             var books = mapper.Map<BookDto, BookViewModel>(bookDtos);
             return Json<BookViewModel>(books);
         }
-
+        /// <summary>
+        /// Add new book in database.
+        /// </summary>
+        /// <param name="book">Book View Model </param>
         [HttpPost]
         public bool AddBook(BookViewModel book)
         {
-            bool status = false;
+            var status = false;
             if (ModelState.IsValid)
             {
                 try
@@ -65,10 +77,14 @@ namespace BestLibrary.Controllers
             return status;
         }
 
+        /// <summary>
+        /// Update book data in database.
+        /// </summary>
+        /// <param name="book">Book View Model </param>
         [HttpPut]
         public bool UpdateBook(BookViewModel book)
         {
-            bool status = false;
+            var status = false;
             if (ModelState.IsValid)
             {
                 try
@@ -94,7 +110,10 @@ namespace BestLibrary.Controllers
             return status;
 
         }
-
+        /// <summary>
+        /// Delete book from database.
+        /// </summary>
+        /// <param name="id">Book ID</param>
         [HttpDelete]
         public bool DeleteBook(int id)
         {

@@ -8,6 +8,9 @@ using System.Web.Http.Results;
 
 namespace BestLibrary.Controllers
 {
+    /// <summary>
+    /// Issuance of Books Controller.
+    /// </summary>
     public class IssuanceOfBooksController : ApiController
     {
         readonly IIssuanceOfBooksService _libraryService;
@@ -17,8 +20,9 @@ namespace BestLibrary.Controllers
             _libraryService = serv;
         }
 
-
-
+        /// <summary>
+        /// Get all Issuances from database.
+        /// </summary>
         // GET: api/IssuanceOfBooks
         [HttpGet]
         public JsonResult<List<IssuanceOfBooksViewModel>> GetAllIssuances()
@@ -29,6 +33,10 @@ namespace BestLibrary.Controllers
             return Json(issuance);
         }
 
+        /// <summary>
+        /// Get Issuance from database.
+        /// </summary>
+        /// <param name="id">Issuance ID </param>
         // GET: api/IssuanceOfBooks/id
         [HttpGet]
         public JsonResult<IssuanceOfBooksViewModel> GetIssuance(int id)
@@ -39,6 +47,10 @@ namespace BestLibrary.Controllers
             return Json<IssuanceOfBooksViewModel>(books);
         }
 
+        /// <summary>
+        /// Add new Issuance in database.
+        /// </summary>
+        /// <param name="book">Issuance Of Books ViewModel </param>
         [HttpPost]
         public bool CreateIssuance(IssuanceOfBooksViewModel book)
         {
@@ -47,7 +59,7 @@ namespace BestLibrary.Controllers
             try
             {
                 var issuanceOfBooksDto = new IssuanceOfBooksDto()
-                { 
+                {
                     ReturnDate = book.ReturnDate,
                     DateIssue = book.DateIssue,
                     CatalogBooksId = book.CatalogBooksId,
@@ -63,6 +75,10 @@ namespace BestLibrary.Controllers
             return status;
         }
 
+        /// <summary>
+        /// Return Issuance in  lib (delete Issuance).
+        /// </summary>
+        /// <param name="id">Issuance ID </param>
         [HttpDelete]
         public bool ReturnIssuance(int id)
         {

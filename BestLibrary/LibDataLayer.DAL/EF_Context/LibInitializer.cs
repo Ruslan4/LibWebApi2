@@ -6,6 +6,12 @@ namespace LibDataLayer.DAL.EF_Context
 {
     public class LibInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<LibraryContext>
     {
+        /// <inheritdoc />
+        /// <summary>
+        /// The method must be overridden to actually add data to the context to fill in the initial values.
+        /// The default implementation takes no action.
+        /// </summary>
+        /// <param name="context">Context to fill with initial values.</param>
         protected override void Seed(LibraryContext context)
         {
             var books = new List<Book> {
