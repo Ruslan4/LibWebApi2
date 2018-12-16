@@ -4,7 +4,7 @@ namespace BestLibrary.Models
 {
     public class IssuanceOfBooksViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public DateTime DateIssue { get; set; }
         public DateTime ReturnDate { get; set; }

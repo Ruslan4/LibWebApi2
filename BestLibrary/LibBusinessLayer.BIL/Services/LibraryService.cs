@@ -19,27 +19,6 @@ namespace LibBusinessLayer.BIL.Services
             Database = uow;
         }
 
-        //Метод MakeUser() получает объект для сохранения с уровня представления и создает по нему объект ClientProfiles и сохраняет его в базу данных.
-        public void MakeUser(ClientProfileDto clientProfileDto)
-        {
-            Book book = Database.Books.Get(5);
-
-            // валидация
-            if (book == null)
-                throw new ValidationException("Книга не найдена", "");
-
-            //TODO: Дополнительная логика
-
-            ClientProfile clientProfile = new ClientProfile
-            {
-                //Id = book.Id,
-                Address = clientProfileDto.Address,
-                Name = clientProfileDto.Name
-            };
-            Database.ClientProfiles.Create(clientProfile);
-            Database.Save();
-        }
-
         public bool AddBook(BookDto bookDto)
         {
             bool status;

@@ -6,13 +6,14 @@ using LibDataLayer.DAL.Interfaces;
 using LibDataLayer.DAL.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+
 
 namespace LibBusinessLayer.BIL.Services
 {
     public class IssuanceOfBooksService : IIssuanceOfBooksService
     {
         public IUnitOfWork Database { get; set; }
-
         //IssuanceOfBooksService в конструкторе принимает объект IUnitOfWork, через который идет взаимодействие с уровнем DAL.
         public IssuanceOfBooksService(IUnitOfWork uow)
         {
@@ -23,8 +24,7 @@ namespace LibBusinessLayer.BIL.Services
         {
             bool status;
             try
-            {
-                
+            {             
                 IssuanceOfBooks issuance = new IssuanceOfBooks
                 {
                     CatalogBooksId = issuanceOfBooksDto.CatalogBooksId,
@@ -72,6 +72,23 @@ namespace LibBusinessLayer.BIL.Services
             if (id == null)
                 throw new ValidationException("Не установлено id книги", "");
             var issuanceOfBooks = Database.IssuanceOfBooks.Get(id.Value);
+            if (issuanceOfBooks == null)
+                throw new ValidationException("Книга не найдена", "");
+
+            return new IssuanceOfBooksDto
+            {
+                Id = issuanceOfBooks.Id,
+                ReturnDate = issuanceOfBooks.ReturnDate,
+                CatalogBooksId = issuanceOfBooks.CatalogBooksId
+                //ClientProfileId = issuanceOfBooks.ClientProfileId
+            };
+        }
+
+        public IssuanceOfBooksDto GetUserIssuance(int id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id книги", "");
+            var issuanceOfBooks = Database.IssuanceOfBooks.Get(id);
             if (issuanceOfBooks == null)
                 throw new ValidationException("Книга не найдена", "");
 

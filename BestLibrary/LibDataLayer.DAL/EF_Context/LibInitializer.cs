@@ -33,7 +33,7 @@ namespace LibDataLayer.DAL.EF_Context
 
             var issuanceOfBooks = new List<IssuanceOfBooks>
             {
-                new IssuanceOfBooks{CatalogBooksId=2, ReturnDate = DateTime.Parse("2005-09-01"),ClientProfileId = "0", DateIssue = DateTime.Parse("2005-09-01") },
+                new IssuanceOfBooks{CatalogBooksId=2, ReturnDate = DateTime.Parse("2005-09-01"),ClientProfileId = "0", DateIssue = DateTime.Parse("2005-09-01"), },
                 new IssuanceOfBooks{CatalogBooksId=1, ReturnDate = DateTime.Parse("2005-09-01"),ClientProfileId = "0", DateIssue = DateTime.Parse("2005-09-01") }
             };
             issuanceOfBooks.ForEach(s => context.IssuanceOfBooks.Add(s));

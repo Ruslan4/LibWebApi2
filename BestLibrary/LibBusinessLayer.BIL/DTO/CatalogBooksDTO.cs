@@ -9,7 +9,7 @@ namespace LibBusinessLayer.BIL.DTO
     public class CatalogBooksDto
     {
         public int Id { get; set; }
-        public int BookId { get; set; }
+        public string BookId { get; set; }
         public bool HaveABook { get; set; }
     }
 }

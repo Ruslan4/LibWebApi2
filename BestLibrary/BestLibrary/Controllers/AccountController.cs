@@ -22,6 +22,7 @@ namespace BestLibrary.Controllers
                 return HttpContext.GetOwinContext().GetUserManager<IUserService>();
             }
         }
+        
 
         private IAuthenticationManager AuthenticationManager
         {
@@ -63,11 +64,13 @@ namespace BestLibrary.Controllers
             return View(model);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
         }
+
 
         public ActionResult Register()
         {

@@ -1,25 +1,41 @@
-﻿using System;
+﻿using BestLibrary.Models;
+using BestLibrary.Services;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using BestLibrary.Models;
-using BestLibrary.Services;
+using LibBusinessLayer.BIL.DTO;
+using LibBusinessLayer.BIL.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BestLibrary.Controllers
 {
+    [Authorize]
     public class LibraryController : Controller
     {
+        private IUserService UserService
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<IUserService>();
+            }
+        }
+
         [HttpGet]
         public ActionResult ElectronicSubscriptions()
         {
-            return View();
+            ClientProfileDto clientProfileDto = new ClientProfileDto
+            {
+                Id = User.Identity.GetUserId(),
+                Email = User.Identity.Name
+            };
+
+            return View(clientProfileDto);
         }
 
-
         // GET: Library
+        [Authorize]
         public ActionResult GetAllBooks()
         {
             ServiceRepository serviceObj = new ServiceRepository();

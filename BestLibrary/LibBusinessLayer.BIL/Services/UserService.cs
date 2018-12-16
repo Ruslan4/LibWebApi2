@@ -16,10 +16,16 @@ namespace LibBusinessLayer.BIL.Services
     public class UserService : IUserService
     {
         IUnitOfWorkUser Database { get; set; }
+        private ClientProfileDto CurrentUser { get; set; }
 
         public UserService(IUnitOfWorkUser uow)
         {
             Database = uow;
+        }
+
+        public ClientProfileDto GetCurrentUser()
+        {
+            return CurrentUser;
         }
 
         public async Task<OperationDetails> Create(ClientProfileDto clientProfileDto)
@@ -29,7 +35,7 @@ namespace LibBusinessLayer.BIL.Services
             {
                 user = new ApplicationUser { Email = clientProfileDto.Email, UserName = clientProfileDto.Email };
                 var result = await Database.UserManager.CreateAsync(user, clientProfileDto.Password);
-                if (result.Errors.Count() > 0)
+                if (result.Errors.Any())
                     return new OperationDetails(false, result.Errors.FirstOrDefault(), "");
                 // добавляем роль
                 await Database.UserManager.AddToRoleAsync(user.Id, clientProfileDto.Role);
@@ -42,6 +48,10 @@ namespace LibBusinessLayer.BIL.Services
                 };
                 Database.ClientManager.Create(clientProfile);
                 await Database.SaveAsync();
+                CurrentUser = new ClientProfileDto
+                {
+                    Id = user.Id,
+                };
                 return new OperationDetails(true, "Регистрация успешно пройдена", "");
             }
             else
@@ -50,15 +60,23 @@ namespace LibBusinessLayer.BIL.Services
             }
         }
 
+
+
         public async Task<ClaimsIdentity> Authenticate(ClientProfileDto clientProfileDto)
         {
             ClaimsIdentity claim = null;
             // находим пользователя
             ApplicationUser user = await Database.UserManager.FindAsync(clientProfileDto.Email, clientProfileDto.Password);
+
             // авторизуем его и возвращаем объект ClaimsIdentity
             if (user != null)
-                claim = await Database.UserManager.CreateIdentityAsync(user,
-                                            DefaultAuthenticationTypes.ApplicationCookie);
+            {
+                claim = await Database.UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                CurrentUser = new ClientProfileDto
+                {
+                    Id = user.Id,
+                };
+            }
             return claim;
         }
 

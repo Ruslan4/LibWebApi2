@@ -16,7 +16,7 @@ namespace LibDataLayer.DAL.Models
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public string IssuanceOfBooksId { get; set; }
+        public int IssuanceOfBooksId { get; set; }
         public virtual ICollection<IssuanceOfBooks> IssuanceOfBooks { get; set; }
     }
 }

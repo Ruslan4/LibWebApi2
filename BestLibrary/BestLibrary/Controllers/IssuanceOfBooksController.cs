@@ -17,6 +17,8 @@ namespace BestLibrary.Controllers
             _libraryService = serv;
         }
 
+
+
         // GET: api/IssuanceOfBooks
         [HttpGet]
         public JsonResult<List<IssuanceOfBooksViewModel>> GetAllIssuances()
@@ -40,7 +42,7 @@ namespace BestLibrary.Controllers
         [HttpPost]
         public bool CreateIssuance(IssuanceOfBooksViewModel book)
         {
-            bool status = false;
+            bool status;
             if (!ModelState.IsValid) return false;
             try
             {

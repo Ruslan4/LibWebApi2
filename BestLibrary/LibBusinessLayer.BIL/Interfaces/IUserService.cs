@@ -14,5 +14,6 @@ namespace LibBusinessLayer.BIL.Interfaces
         Task<OperationDetails> Create(ClientProfileDto clientProfileDto);
         Task<ClaimsIdentity> Authenticate(ClientProfileDto clientProfileDto);
         Task SetInitialData(ClientProfileDto adminDto, List<string> roles);
+        ClientProfileDto GetCurrentUser();
     }
 }
