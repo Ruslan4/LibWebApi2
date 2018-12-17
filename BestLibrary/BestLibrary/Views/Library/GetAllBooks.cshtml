@@ -1,81 +1,105 @@
 ﻿@model IEnumerable<BestLibrary.Models.BookViewModel>
 
-<form action="~/Library/CreateBook" method="get">
-    <div class="align-content-center">
-        <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Create New Book" onclick="redirect" />
-    </div>
-</form>
+<style type="text/css">
+    .imgcontainer {
+        text-align: left;
+        margin: 1px 0 10px 0;
+        position: relative;
+    }
+</style>
 
 @using (Html.BeginForm())
 {
     ViewBag.Title = "GetAllBooks";
     @Html.AntiForgeryToken()
     <body>
-        <div class="card text-white bg-dark mb-3">
-            <div class="card-body">
-                <h2 class="card-header text-center">
-                    All Books
-                </h2>
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Id)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.BookСipher)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Author)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CountBook)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Pages)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.PrintDate)
-                        </th>
-                        <th></th>
-                    </tr>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BookСipher)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Author)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CountBook)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Pages)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PrintDate)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "EditBook", new { id = item.Id, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                                @Html.ActionLink("Take", "Take", new { id = item.Id })
-                            </td>
-                        </tr>
-                    }
-                </table>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-2" style="margin: 10px">
+                    
+                    <div id="browse_app">
+                        <a class="btn btn-primary btn-block" href="~/Library/CreateBook">Create new book</a>
+                    </div>                   
+
+                </div>
+                <div class="col-md-auto">
+                    <div class="card text-white bg-dark imgcontainer">
+                        <div class="card-body">
+                            <h2 class="text-center">
+                                All Books
+                            </h2>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-dark table-bordered">
+                                    <tr>
+                                        <th scope="col">
+                                            #
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.BookСipher)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.Name)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.Author)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.CountBook)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.Pages)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.PrintDate)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookСipher)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Author)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CountBook)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Pages)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrintDate)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "EditBook", new { id = item.Id, cip = item.BookСipher, name = item.Name, author = item.Author, countBook = item.CountBook, pages = item.Pages, printDate = item.PrintDate, book = item }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                                            @Html.ActionLink("Take", "Take", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-2">
+                    3 of 3
+                </div>
             </div>
         </div>
     </body>
 }
+
+<script>
+
+</script>

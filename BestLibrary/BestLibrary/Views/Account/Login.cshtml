@@ -1,14 +1,33 @@
 ﻿@Styles.Render("~/Content/LoginReg.css")
-
 @model BestLibrary.Models.LoginModel
+@{Layout = null;}
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        .imgcontainer {
+            text-align: left;
+            margin: 60px 0 12px 0;
+            position: relative;
+        }
+    </style>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
 
 @using (Html.BeginForm())
 {
     ViewBag.Title = "Login";
     @Html.AntiForgeryToken()
 
-    <body>
-        <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+    <body class="text-center bg-info">
+
+        <div class="card text-white bg-dark mb-5 container imgcontainer" style="max-width: 20rem;">
             <div class="card-body">
                 <h2 class="card-header text-center">Login to Library</h2>
                 <form name="form">
@@ -19,27 +38,25 @@
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
 
-                    <div>
+                    <div class="form-group clearfix mb-2">
                         <label class="col-form-label" for="Password">Password</label>
                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="form-group clearfix">
-                        <div class="float-left">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox"
-                                       id="RememberMe"
-                                       name="RememberMe"
-                                       class="custom-control-input"
-                                       value="true">
-                                <label class="custom-control-label" for="RememberMe">Remember me</label>
-                            </div>
+                    <div class="float-left form-group clearfix">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox"
+                                   id="RememberMe"
+                                   name="RememberMe"
+                                   class="custom-control-input"
+                                   value="true">
+                            <label class="custom-control-label" for="RememberMe">Remember me</label>
                         </div>
                     </div>
 
                     <div class="align-content-center">
-                        <input type="submit" id="submitLogin" class="btn btn-primary btn-block px-0" value="Login" />
+                        <input type="submit" id="submitLogin" class="btn btn-primary btn-block" value="Login" />
                     </div>
                 </form>
                 <div class="text-center">
@@ -52,3 +69,4 @@
         </div>
     </body>
 }
+</html>
