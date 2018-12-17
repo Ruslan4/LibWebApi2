@@ -11,7 +11,7 @@ namespace BestLibrary
 {
     public class Startup
     {
-        IServiceCreator serviceCreator = new ServiceCreator();
+        private readonly IServiceCreator _serviceCreator = new ServiceCreator();
         public void Configuration(IAppBuilder app)
         {
             app.CreatePerOwinContext(CreateUserService);
@@ -24,7 +24,7 @@ namespace BestLibrary
 
         private IUserService CreateUserService()
         {
-            return serviceCreator.CreateUserService("DefaultConnection");
+            return _serviceCreator.CreateUserService("DefaultConnection");
         }
     }
 }

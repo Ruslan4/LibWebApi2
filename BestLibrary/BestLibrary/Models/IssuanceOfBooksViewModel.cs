@@ -2,6 +2,9 @@
 
 namespace BestLibrary.Models
 {
+    /// <summary>
+    /// Models returned by actions IssuanceController.
+    /// </summary>
     public class IssuanceOfBooksViewModel
     {
         public int Id { get; set; }

@@ -11,6 +11,10 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BestLibrary.Controllers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Controller of work with library information system.
+    /// </summary>
     [Authorize]
     public class LibraryController : Controller
     {
@@ -22,6 +26,9 @@ namespace BestLibrary.Controllers
             }
         }
 
+        /// <summary>
+        /// Return  Electronic Subscriptions  lib.
+        /// </summary>
         [HttpGet]
         public ActionResult ElectronicSubscriptions()
         {
@@ -34,6 +41,9 @@ namespace BestLibrary.Controllers
             return View(clientProfileDto);
         }
 
+        /// <summary>
+        /// Get All Books in  lib.
+        /// </summary>
         // GET: Library
         [Authorize]
         public ActionResult GetAllBooks()
@@ -46,6 +56,10 @@ namespace BestLibrary.Controllers
             return View(products);
         }
 
+        /// <summary>
+        /// Edit Book in lib.
+        /// </summary>
+        /// <param name="id">Book ID </param>
         //[HttpGet]  
         public ActionResult EditBook(int id)
         {
@@ -63,6 +77,10 @@ namespace BestLibrary.Controllers
             return View();
         }
 
+        /// <summary>
+        ///  Create new Book in lib.
+        /// </summary>
+        /// <param name="book">Book View Model </param>
         [HttpPost]
         public ActionResult CreateBook(Models.BookViewModel book)
         {
@@ -72,6 +90,10 @@ namespace BestLibrary.Controllers
             return RedirectToAction("GetAllBooks");
         }
 
+        /// <summary>
+        ///  Get detailed information about the book.
+        /// </summary>
+        /// <param name="id">Book ID </param>
         public ActionResult Details(int id)
         {
             ServiceRepository serviceObj = new ServiceRepository();
@@ -82,6 +104,10 @@ namespace BestLibrary.Controllers
             return View(products);
         }
 
+        /// <summary>
+        ///  Update information about the book.
+        /// </summary>
+        /// <param name="book">Book View Model </param>
         //[HttpPost]  
         public ActionResult Update(BookViewModel book)
         {
@@ -91,6 +117,10 @@ namespace BestLibrary.Controllers
             return RedirectToAction("GetAllBooks");
         }
 
+        /// <summary>
+        ///  Delete book from DB.
+        /// </summary>
+        /// <param name="id">Book ID</param>
         public ActionResult Delete(int id)
         {
             ServiceRepository serviceObj = new ServiceRepository();

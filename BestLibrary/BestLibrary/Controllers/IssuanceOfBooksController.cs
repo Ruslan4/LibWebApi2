@@ -85,6 +85,10 @@ namespace BestLibrary.Controllers
             return _libraryService.ReturnIssuance(id);
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Dispose of resources.
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             _libraryService.Dispose();

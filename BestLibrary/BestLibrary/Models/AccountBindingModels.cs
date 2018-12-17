@@ -4,8 +4,9 @@ using Newtonsoft.Json;
 
 namespace BestLibrary.Models
 {
-    // Модели, используемые в качестве параметров действий AccountController.
-
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class AddExternalLoginBindingModel
     {
         [Required]
@@ -13,6 +14,9 @@ namespace BestLibrary.Models
         public string ExternalAccessToken { get; set; }
     }
 
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class ChangePasswordBindingModel
     {
         [Required]
@@ -32,6 +36,9 @@ namespace BestLibrary.Models
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class RegisterBindingModel
     {
         [Required]
@@ -50,6 +57,9 @@ namespace BestLibrary.Models
         public string ConfirmPassword { get; set; }
     }
 
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class RegisterExternalBindingModel
     {
         [Required]
@@ -57,6 +67,9 @@ namespace BestLibrary.Models
         public string Email { get; set; }
     }
 
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class RemoveLoginBindingModel
     {
         [Required]
@@ -68,6 +81,9 @@ namespace BestLibrary.Models
         public string ProviderKey { get; set; }
     }
 
+    /// <summary>
+    /// Models used as action parameters AccountController.
+    /// </summary>
     public class SetPasswordBindingModel
     {
         [Required]

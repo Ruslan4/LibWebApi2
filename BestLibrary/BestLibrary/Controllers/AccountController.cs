@@ -57,6 +57,7 @@ namespace BestLibrary.Controllers
             }
             return View(model);
         }
+
         /// <summary>
         /// Logout and redirect to ~/Account/Login/
         /// </summary>
@@ -67,11 +68,11 @@ namespace BestLibrary.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-
         public ActionResult Register()
         {
             return View();
         }
+
         /// <summary>
         /// Creates a new user by the incoming model.
         /// </summary>

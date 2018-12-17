@@ -6,6 +6,9 @@ using System.Web;
 
 namespace BestLibrary.Models
 {
+    /// <summary>
+    /// Models returned by actions AccountController.
+    /// </summary>
     public class LoginModel
     {
         [Required]

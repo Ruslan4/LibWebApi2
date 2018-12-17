@@ -5,6 +5,9 @@ using System.Web;
 
 namespace BestLibrary.Models
 {
+    /// <summary>
+    /// Models returned by actions BookController.
+    /// </summary>
     public class BookViewModel
     {
         public int Id { get; set; }

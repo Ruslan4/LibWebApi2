@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace BestLibrary.Models
 {
-    // Модели, возвращаемые действиями AccountController.
-
+    /// <summary>
+    /// Models returned by actions AccountController.
+    /// </summary>
     public class ExternalLoginViewModel
     {
         public string Name { get; set; }
@@ -13,7 +14,9 @@ namespace BestLibrary.Models
 
         public string State { get; set; }
     }
-
+    /// <summary>
+    /// Models returned by actions AccountController.
+    /// </summary>
     public class ManageInfoViewModel
     {
         public string LocalLoginProvider { get; set; }
@@ -24,7 +27,9 @@ namespace BestLibrary.Models
 
         public IEnumerable<ExternalLoginViewModel> ExternalLoginProviders { get; set; }
     }
-
+    /// <summary>
+    /// Models returned by actions AccountController.
+    /// </summary>
     public class UserInfoViewModel
     {
         public string Email { get; set; }
@@ -33,7 +38,9 @@ namespace BestLibrary.Models
 
         public string LoginProvider { get; set; }
     }
-
+    /// <summary>
+    /// Models returned by actions AccountController.
+    /// </summary>
     public class UserLoginInfoViewModel
     {
         public string LoginProvider { get; set; }
