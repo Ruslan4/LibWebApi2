@@ -32,13 +32,14 @@ namespace BestLibrary.Controllers
         [HttpGet]
         public ActionResult ElectronicSubscriptions()
         {
-            ClientProfileDto clientProfileDto = new ClientProfileDto
-            {
-                Id = User.Identity.GetUserId(),
-                Email = User.Identity.Name
-            };
+            string id = User.Identity.GetUserId();
 
-            return View(clientProfileDto);
+            ServiceRepository serviceObj = new ServiceRepository();
+            HttpResponseMessage response = serviceObj.GetResponse("api/IssuanceOfBooks/GetAllIssuances?id=" + id);
+            response.EnsureSuccessStatusCode();
+            List<BookViewModel> subscriptions = response.Content.ReadAsAsync<List<BookViewModel>>().Result;
+
+            return View(subscriptions);
         }
 
         /// <summary>
@@ -51,9 +52,9 @@ namespace BestLibrary.Controllers
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/Book/");
             response.EnsureSuccessStatusCode();
-            List<BookViewModel> products = response.Content.ReadAsAsync<List<BookViewModel>>().Result;
+            List<BookViewModel> books = response.Content.ReadAsAsync<List<BookViewModel>>().Result;
             ViewBag.Title = "All books";
-            return View(products);
+            return View(books);
         }
 
         /// <summary>

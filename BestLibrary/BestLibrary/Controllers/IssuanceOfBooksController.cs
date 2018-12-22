@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using BestLibrary.Models;
 using LibBusinessLayer.BIL.DTO;
 using LibBusinessLayer.BIL.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -25,11 +27,24 @@ namespace BestLibrary.Controllers
         /// </summary>
         // GET: api/IssuanceOfBooks
         [HttpGet]
-        public JsonResult<List<IssuanceOfBooksViewModel>> GetAllIssuances()
+        public JsonResult<List<IssuanceOfBooksViewModel>> GetAllIssuances(string id)
         {
             IEnumerable<IssuanceOfBooksDto> issuanceOfBooksDtos = _libraryService.GetIssuances();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooksDto, IssuanceOfBooksViewModel>()).CreateMapper();
             var issuance = mapper.Map<IEnumerable<IssuanceOfBooksDto>, List<IssuanceOfBooksViewModel>>(issuanceOfBooksDtos);
+            var issuanceCurrentUser =
+                from item in issuance
+                where item.ClientProfileId == id
+                select new IssuanceOfBooksDto
+                {
+                    Id = item.Id,
+                    ClientProfileId = item.ClientProfileId,
+                    ReturnDate = item.ReturnDate,
+                    CatalogBooksId = item.CatalogBooksId,
+                    DateIssue = item.DateIssue
+                };
+
+            int a1 = 1;
             return Json(issuance);
         }
 
@@ -38,14 +53,14 @@ namespace BestLibrary.Controllers
         /// </summary>
         /// <param name="id">Issuance ID </param>
         // GET: api/IssuanceOfBooks/id
-        [HttpGet]
-        public JsonResult<IssuanceOfBooksViewModel> GetIssuance(int id)
-        {
-            IssuanceOfBooksDto issuanceOfBooksDto = _libraryService.GetIssuance(id);
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooksDto, IssuanceOfBooksViewModel>()).CreateMapper();
-            var books = mapper.Map<IssuanceOfBooksDto, IssuanceOfBooksViewModel>(issuanceOfBooksDto);
-            return Json<IssuanceOfBooksViewModel>(books);
-        }
+        //[HttpGet]
+        //public JsonResult<IssuanceOfBooksViewModel> GetIssuance(int id)
+        //{
+        //    IssuanceOfBooksDto issuanceOfBooksDto = _libraryService.GetIssuance(id);
+        //    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooksDto, IssuanceOfBooksViewModel>()).CreateMapper();
+        //    var books = mapper.Map<IssuanceOfBooksDto, IssuanceOfBooksViewModel>(issuanceOfBooksDto);
+        //    return Json<IssuanceOfBooksViewModel>(books);
+        //}
 
         /// <summary>
         /// Add new Issuance in database.

@@ -1,7 +1,94 @@
-﻿
-@{
+﻿@model IEnumerable<BestLibrary.Models.IssuanceOfBooksViewModel>
+<style type="text/css">
+    .imgcontainer {
+        text-align: left;
+        margin: 1px 0 10px 0;
+        position: relative;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
     ViewBag.Title = "ElectronicSubscriptions";
+    @Html.AntiForgeryToken()
+    <body>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-2" style="margin: 10px">
+
+                    <div id="browse_app">
+                        <a class="btn btn-primary btn-block" href="~/Library/CreateBook">Create new book</a>
+                    </div>
+
+                </div>
+                <div class="col-md-auto">
+                    <div class="card text-white bg-dark imgcontainer">
+                        <div class="card-body">
+                            <h2 class="text-center">
+                                All Books
+                            </h2>
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-dark table-bordered">
+                                    <tr>
+                                        <th scope="col">
+                                            #
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.Id)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.CatalogBooksId)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.ClientProfileId)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.DateIssue)
+                                        </th>
+                                        <th scope="col">
+                                            @Html.DisplayNameFor(model => model.ReturnDate)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CatalogBooksId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ClientProfileId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateIssue)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReturnDate)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                                            @Html.ActionLink("Take", "Take", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-2">
+                    3 of 3
+                </div>
+            </div>
+        </div>
+    </body>
 }
 
-<h2>ElectronicSubscriptions</h2>
+<script>
 
+</script>
