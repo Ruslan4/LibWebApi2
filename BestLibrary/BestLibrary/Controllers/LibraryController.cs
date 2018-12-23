@@ -37,7 +37,7 @@ namespace BestLibrary.Controllers
             ServiceRepository serviceObj = new ServiceRepository();
             HttpResponseMessage response = serviceObj.GetResponse("api/IssuanceOfBooks/GetAllIssuances?id=" + id);
             response.EnsureSuccessStatusCode();
-            List<BookViewModel> subscriptions = response.Content.ReadAsAsync<List<BookViewModel>>().Result;
+            List<IssuanceOfBooksViewModel> subscriptions = response.Content.ReadAsAsync<List<IssuanceOfBooksViewModel>>().Result;
 
             return View(subscriptions);
         }

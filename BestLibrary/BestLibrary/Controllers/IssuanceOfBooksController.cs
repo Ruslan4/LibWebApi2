@@ -23,19 +23,20 @@ namespace BestLibrary.Controllers
         }
 
         /// <summary>
-        /// Get all Issuances from database.
+        /// Get all Issuance Of Books the current reader from the database.
         /// </summary>
+        /// <param name="id">Current User ID.</param>
         // GET: api/IssuanceOfBooks
         [HttpGet]
         public JsonResult<List<IssuanceOfBooksViewModel>> GetAllIssuances(string id)
         {
             IEnumerable<IssuanceOfBooksDto> issuanceOfBooksDtos = _libraryService.GetIssuances();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooksDto, IssuanceOfBooksViewModel>()).CreateMapper();
-            var issuance = mapper.Map<IEnumerable<IssuanceOfBooksDto>, List<IssuanceOfBooksViewModel>>(issuanceOfBooksDtos);
+            List<IssuanceOfBooksViewModel> issuance = mapper.Map<IEnumerable<IssuanceOfBooksDto>, List<IssuanceOfBooksViewModel>>(issuanceOfBooksDtos);
             var issuanceCurrentUser =
                 from item in issuance
                 where item.ClientProfileId == id
-                select new IssuanceOfBooksDto
+                select new IssuanceOfBooksViewModel
                 {
                     Id = item.Id,
                     ClientProfileId = item.ClientProfileId,
@@ -43,9 +44,7 @@ namespace BestLibrary.Controllers
                     CatalogBooksId = item.CatalogBooksId,
                     DateIssue = item.DateIssue
                 };
-
-            int a1 = 1;
-            return Json(issuance);
+            return Json(issuanceCurrentUser.ToList());
         }
 
         /// <summary>

@@ -1,6 +1,6 @@
 ﻿var path = require('path');
 var webpack = require('webpack');
-var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
+var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
@@ -10,6 +10,9 @@ module.exports = {
         path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public
         publicPath: '/public/',
         filename: "[name].js"       // название создаваемого файла
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     resolve: {
         extensions: ['.ts', '.js']
@@ -25,6 +28,9 @@ module.exports = {
                     },
                     'angular2-template-loader'
                 ]
+            }, {
+                test: /\.html$/,
+                loader: 'html-loader'
             }
         ]
     },

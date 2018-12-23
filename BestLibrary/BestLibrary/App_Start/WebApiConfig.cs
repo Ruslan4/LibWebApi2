@@ -7,6 +7,9 @@ namespace BestLibrary
     {
         public static void Register(HttpConfiguration config)
         {
+            // Добавляем поддержку CORS
+            config.EnableCors();
+
             // Маршруты Web API
             config.MapHttpAttributeRoutes();
 
