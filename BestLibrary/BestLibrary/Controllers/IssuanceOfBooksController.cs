@@ -10,12 +10,13 @@ using System.Web.Http.Results;
 
 namespace BestLibrary.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Issuance of Books Controller.
     /// </summary>
     public class IssuanceOfBooksController : ApiController
     {
-        readonly IIssuanceOfBooksService _libraryService;
+        private readonly IIssuanceOfBooksService _libraryService;
 
         public IssuanceOfBooksController(IIssuanceOfBooksService serv)
         {

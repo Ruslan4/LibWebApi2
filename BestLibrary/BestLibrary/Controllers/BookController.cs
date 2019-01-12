@@ -43,7 +43,7 @@ namespace BestLibrary.Controllers
             var bookDtos = _libraryService.GetBook(id);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDto, BookViewModel>()).CreateMapper();
             var books = mapper.Map<BookDto, BookViewModel>(bookDtos);
-            return Json<BookViewModel>(books);
+            return Json(books);
         }
         /// <summary>
         /// Add new book in database.
@@ -84,28 +84,26 @@ namespace BestLibrary.Controllers
         [HttpPut]
         public bool UpdateBook(BookViewModel book)
         {
-            var status = false;
-            if (ModelState.IsValid)
+            bool status;
+            if (!ModelState.IsValid) return false;
+            try
             {
-                try
+                var bookDto = new BookDto()
                 {
-                    var bookDto = new BookDto()
-                    {
-                        Id = book.Id,
-                        Author = book.Author,
-                        Name = book.Name,
-                        BookСipher = book.BookСipher,
-                        CountBook = book.CountBook,
-                        Pages = book.Pages,
-                        PrintDate = book.PrintDate
-                    };
+                    Id = book.Id,
+                    Author = book.Author,
+                    Name = book.Name,
+                    BookСipher = book.BookСipher,
+                    CountBook = book.CountBook,
+                    Pages = book.Pages,
+                    PrintDate = book.PrintDate
+                };
 
-                    status = _libraryService.UpdateBook(bookDto);
-                }
-                catch (System.Exception)
-                {
-                    status = false;
-                }
+                status = _libraryService.UpdateBook(bookDto);
+            }
+            catch (System.Exception)
+            {
+                status = false;
             }
             return status;
 

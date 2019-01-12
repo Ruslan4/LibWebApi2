@@ -1,11 +1,8 @@
 ﻿using BestLibrary.Models;
 using BestLibrary.Services;
-using LibBusinessLayer.BIL.Interfaces;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BestLibrary.Controllers
@@ -17,8 +14,6 @@ namespace BestLibrary.Controllers
     [Authorize]
     public class LibraryController : Controller
     {
-        private IUserService UserService => HttpContext.GetOwinContext().GetUserManager<IUserService>();
-
         /// <summary>
         /// Return  Electronic Subscriptions  lib.
         /// </summary>
