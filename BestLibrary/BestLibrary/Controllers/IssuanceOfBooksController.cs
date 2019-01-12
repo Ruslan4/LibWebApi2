@@ -48,20 +48,6 @@ namespace BestLibrary.Controllers
         }
 
         /// <summary>
-        /// Get Issuance from database.
-        /// </summary>
-        /// <param name="id">Issuance ID </param>
-        // GET: api/IssuanceOfBooks/id
-        //[HttpGet]
-        //public JsonResult<IssuanceOfBooksViewModel> GetIssuance(int id)
-        //{
-        //    IssuanceOfBooksDto issuanceOfBooksDto = _libraryService.GetIssuance(id);
-        //    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooksDto, IssuanceOfBooksViewModel>()).CreateMapper();
-        //    var books = mapper.Map<IssuanceOfBooksDto, IssuanceOfBooksViewModel>(issuanceOfBooksDto);
-        //    return Json<IssuanceOfBooksViewModel>(books);
-        //}
-
-        /// <summary>
         /// Add new Issuance in database.
         /// </summary>
         /// <param name="book">Issuance Of Books ViewModel </param>
@@ -109,5 +95,4 @@ namespace BestLibrary.Controllers
             base.Dispose(disposing);
         }
     }
-
 }

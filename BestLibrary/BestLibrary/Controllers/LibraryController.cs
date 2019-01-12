@@ -1,13 +1,12 @@
 ﻿using BestLibrary.Models;
 using BestLibrary.Services;
+using LibBusinessLayer.BIL.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-using LibBusinessLayer.BIL.DTO;
-using LibBusinessLayer.BIL.Interfaces;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 
 namespace BestLibrary.Controllers
 {
@@ -18,13 +17,7 @@ namespace BestLibrary.Controllers
     [Authorize]
     public class LibraryController : Controller
     {
-        private IUserService UserService
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<IUserService>();
-            }
-        }
+        private IUserService UserService => HttpContext.GetOwinContext().GetUserManager<IUserService>();
 
         /// <summary>
         /// Return  Electronic Subscriptions  lib.
@@ -72,6 +65,9 @@ namespace BestLibrary.Controllers
             return View(products);
         }
 
+        /// <summary>
+        ///  HttpGet - Create new Book in lib.
+        /// </summary>
         [HttpGet]
         public ActionResult CreateBook()
         {
@@ -79,7 +75,7 @@ namespace BestLibrary.Controllers
         }
 
         /// <summary>
-        ///  Create new Book in lib.
+        ///  HttpPost - Create new Book in lib.
         /// </summary>
         /// <param name="book">Book View Model </param>
         [HttpPost]
