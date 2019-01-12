@@ -10,43 +10,43 @@ namespace LibDataLayer.DAL.Repositories
 {
     public class CatalogBooksRepository : IRepository<CatalogBooks>
     {
-        private LibraryContext db;
+        private readonly LibraryContext _db;
 
         public CatalogBooksRepository(LibraryContext context)
         {
-            this.db = context;
+            this._db = context;
         }
 
         public IEnumerable<CatalogBooks> GetAll()
         {
-            return db.CatalogBooks;
+            return _db.CatalogBooks;
         }
 
         public CatalogBooks Get(int id)
         {
-            return db.CatalogBooks.Find(id);
+            return _db.CatalogBooks.Find(id);
         }
 
         public void Create(CatalogBooks catalogBooks)
         {
-            db.CatalogBooks.Add(catalogBooks);
+            _db.CatalogBooks.Add(catalogBooks);
         }
 
         public void Update(CatalogBooks catalogBooks)
         {
-            db.Entry(catalogBooks).State = EntityState.Modified;
+            _db.Entry(catalogBooks).State = EntityState.Modified;
         }
 
         public IEnumerable<CatalogBooks> Find(Func<CatalogBooks, Boolean> predicate)
         {
-            return db.CatalogBooks.Where(predicate).ToList();
+            return _db.CatalogBooks.Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            CatalogBooks catalogBooks = db.CatalogBooks.Find(id);
+            CatalogBooks catalogBooks = _db.CatalogBooks.Find(id);
             if (catalogBooks != null)
-                db.CatalogBooks.Remove(catalogBooks);
+                _db.CatalogBooks.Remove(catalogBooks);
         }
     }
 }

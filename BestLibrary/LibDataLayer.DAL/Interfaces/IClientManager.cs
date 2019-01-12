@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibDataLayer.DAL.Models;
+﻿using LibDataLayer.DAL.Models;
+using System;
 
 namespace LibDataLayer.DAL.Interfaces
 {

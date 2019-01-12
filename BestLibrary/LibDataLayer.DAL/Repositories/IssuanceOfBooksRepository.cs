@@ -14,7 +14,7 @@ namespace LibDataLayer.DAL.Repositories
 
         public IssuanceOfBooksRepository(LibraryContext context)
         {
-            this._db = context;
+            _db = context;
         }
 
         public IEnumerable<IssuanceOfBooks> GetAll()

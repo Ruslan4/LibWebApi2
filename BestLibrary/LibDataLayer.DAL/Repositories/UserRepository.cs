@@ -10,43 +10,43 @@ namespace LibDataLayer.DAL.Repositories
 {
     public class UserRepository : IRepository<ClientProfile>
     {
-        private LibraryContext db;
+        private readonly LibraryContext _db;
 
         public UserRepository(LibraryContext context)
         {
-            this.db = context;
+            _db = context;
         }
 
         public IEnumerable<ClientProfile> GetAll()
         {
-            return db.ClientProfile.Include(o => o.Id);
+            return _db.ClientProfile.Include(o => o.Id);
         }
 
         public ClientProfile Get(int id)
         {
-            return db.ClientProfile.Find(id);
+            return _db.ClientProfile.Find(id);
         }
 
         public void Create(ClientProfile clientProfile)
         {
-            db.ClientProfile.Add(clientProfile);
+            _db.ClientProfile.Add(clientProfile);
         }
 
         public void Update(ClientProfile clientProfile)
         {
-            db.Entry(clientProfile).State = EntityState.Modified;
+            _db.Entry(clientProfile).State = EntityState.Modified;
         }
 
-        public IEnumerable<ClientProfile> Find(Func<ClientProfile, Boolean> predicate)
+        public IEnumerable<ClientProfile> Find(Func<ClientProfile, bool> predicate)
         {
-            return db.ClientProfile.Include(o => o.Id).AsEnumerable().Where(predicate).ToList();
+            return _db.ClientProfile.Include(o => o.Id).AsEnumerable().Where(predicate).ToList();
         }
 
         public void Delete(int id)
         {
-            ClientProfile clientProfile = db.ClientProfile.Find(id);
+            var clientProfile = _db.ClientProfile.Find(id);
             if (clientProfile != null)
-                db.ClientProfile.Remove(clientProfile);
+                _db.ClientProfile.Remove(clientProfile);
         }
     }
 }

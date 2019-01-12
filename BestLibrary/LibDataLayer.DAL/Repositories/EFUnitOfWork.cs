@@ -13,51 +13,31 @@ namespace LibDataLayer.DAL.Repositories
         private IssuanceOfBooksRepository _issuanceOfBooksRepository;
         private CatalogBooksRepository _catalogBooksRepository;
 
-        //Класс EFUnitOfWork в конструкторе принимает строку - названия подключения, которая потом будет передаваться в конструктор 
-        //контекста данных. Собственно через EFUnitOfWork мы и будем взаимодействовать с базой данных.
-
+        //The EFUnitOfWork class in the constructor takes a string - the name of the connection, which will then be passed to the constructor 
+        //data context. Actually through EFUnitOfWork we will interact with the database.
         public EFUnitOfWork(string connectionString)
         {
             _db = new LibraryContext(connectionString);
         }
         public IRepository<Book> Books
         {
-            get
-            {
-                if (_bookRepository == null)
-                    _bookRepository = new BookRepository(_db);
-                return _bookRepository;
-            }
+            get { return _bookRepository ?? (_bookRepository = new BookRepository(_db)); }
         }
 
         public IRepository<ClientProfile> ClientProfiles
         {
-            get
-            {
-                if (_userRepository == null)
-                    _userRepository = new UserRepository(_db);
-                return _userRepository;
-            }
+            get { return _userRepository ?? (_userRepository = new UserRepository(_db)); }
         }
 
         public IRepository<CatalogBooks> CatalogBooks
         {
-            get
-            {
-                if (_catalogBooksRepository == null)
-                    _catalogBooksRepository = new CatalogBooksRepository(_db);
-                return _catalogBooksRepository;
-            }
+            get { return _catalogBooksRepository ?? (_catalogBooksRepository = new CatalogBooksRepository(_db)); }
         }
 
         public IRepository<IssuanceOfBooks> IssuanceOfBooks
         {
             get
-            {
-                if (_issuanceOfBooksRepository == null)
-                    _issuanceOfBooksRepository = new IssuanceOfBooksRepository(_db);
-                return _issuanceOfBooksRepository;
-            }
+            { return _issuanceOfBooksRepository ?? (_issuanceOfBooksRepository = new IssuanceOfBooksRepository(_db)); }
         }
 
         public void Save()

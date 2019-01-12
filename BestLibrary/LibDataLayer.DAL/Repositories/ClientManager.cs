@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LibDataLayer.DAL.EF_Context;
+﻿using LibDataLayer.DAL.EF_Context;
 using LibDataLayer.DAL.Interfaces;
 using LibDataLayer.DAL.Models;
 
