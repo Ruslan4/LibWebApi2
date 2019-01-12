@@ -6,7 +6,6 @@ using LibDataLayer.DAL.Interfaces;
 using LibDataLayer.DAL.Models;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
 
 
 namespace LibBusinessLayer.BIL.Services
@@ -14,7 +13,7 @@ namespace LibBusinessLayer.BIL.Services
     public class IssuanceOfBooksService : IIssuanceOfBooksService
     {
         public IUnitOfWork Database { get; set; }
-        //IssuanceOfBooksService в конструкторе принимает объект IUnitOfWork, через который идет взаимодействие с уровнем DAL.
+        //IssuanceOfBooksService in the constructor, accepts an IUnitOfWork object, through which the interaction with the level goes DAL.
         public IssuanceOfBooksService(IUnitOfWork uow)
         {
             Database = uow;
@@ -25,13 +24,12 @@ namespace LibBusinessLayer.BIL.Services
             bool status;
             try
             {             
-                IssuanceOfBooks issuance = new IssuanceOfBooks
+                var issuance = new IssuanceOfBooks
                 {
                     CatalogBooksId = issuanceOfBooksDto.CatalogBooksId,
                     DateIssue = issuanceOfBooksDto.DateIssue,
                     ReturnDate = issuanceOfBooksDto.ReturnDate,
                     Id = issuanceOfBooksDto.Id
-                    //ClientProfileId = issuanceOfBooksDto.ClientProfileId
                 };
                 Database.IssuanceOfBooks.Create(issuance);
                 Database.Save();
@@ -46,7 +44,7 @@ namespace LibBusinessLayer.BIL.Services
 
         public IEnumerable<IssuanceOfBooksDto> GetIssuances()
         {
-            // применяем автомаппер для проекции одной коллекции на другую
+            // We use auto-imager for the projection of one collection onto another.
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IssuanceOfBooks, IssuanceOfBooksDto>()).CreateMapper();
             return mapper.Map<IEnumerable<IssuanceOfBooks>, List<IssuanceOfBooksDto>>(Database.IssuanceOfBooks.GetAll());
         }
@@ -80,14 +78,11 @@ namespace LibBusinessLayer.BIL.Services
                 Id = issuanceOfBooks.Id,
                 ReturnDate = issuanceOfBooks.ReturnDate,
                 CatalogBooksId = issuanceOfBooks.CatalogBooksId
-                //ClientProfileId = issuanceOfBooks.ClientProfileId
             };
         }
 
         public IssuanceOfBooksDto GetUserIssuance(int id)
         {
-            if (id == null)
-                throw new ValidationException("Не установлено id книги", "");
             var issuanceOfBooks = Database.IssuanceOfBooks.Get(id);
             if (issuanceOfBooks == null)
                 throw new ValidationException("Книга не найдена", "");
@@ -97,7 +92,6 @@ namespace LibBusinessLayer.BIL.Services
                 Id = issuanceOfBooks.Id,
                 ReturnDate = issuanceOfBooks.ReturnDate,
                 CatalogBooksId = issuanceOfBooks.CatalogBooksId
-                //ClientProfileId = issuanceOfBooks.ClientProfileId
             };
         }
 
@@ -105,6 +99,5 @@ namespace LibBusinessLayer.BIL.Services
         {
             Database.Dispose();
         }
-
     }
 }

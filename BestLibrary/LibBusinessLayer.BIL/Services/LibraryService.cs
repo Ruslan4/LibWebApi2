@@ -13,7 +13,7 @@ namespace LibBusinessLayer.BIL.Services
     {
         public IUnitOfWork Database { get; set; }
 
-        //LibraryService в конструкторе принимает объект IUnitOfWork, через который идет взаимодействие с уровнем DAL.
+        //LibraryService in the constructor, accepts an IUnitOfWork object, through which the interaction with the level goes DAL.
         public LibraryService(IUnitOfWork uow)
         {
             Database = uow;
@@ -24,7 +24,7 @@ namespace LibBusinessLayer.BIL.Services
             bool status;
             try
             {
-                Book book = new Book
+                var book = new Book
                 {
                     Name = bookDto.Name,
                     Author = bookDto.Author,
@@ -46,10 +46,10 @@ namespace LibBusinessLayer.BIL.Services
 
         public bool UpdateBook(BookDto bookDto)
         {
-            bool status = false;
+            bool status;
             try
             {
-                Book book = new Book
+                var book = new Book
                 {
                     Id = bookDto.Id,
                     Author = bookDto.Author,
@@ -72,7 +72,7 @@ namespace LibBusinessLayer.BIL.Services
 
         public IEnumerable<BookDto> GetBooks()
         {
-            // применяем автомаппер для проекции одной коллекции на другую
+            // We use auto-imager for the projection of one collection onto another.
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Book, BookDto>()).CreateMapper();
             return mapper.Map<IEnumerable<Book>, List<BookDto>>(Database.Books.GetAll());
         }
@@ -96,10 +96,10 @@ namespace LibBusinessLayer.BIL.Services
         public BookDto GetBook(int? id)
         {
             if (id == null)
-                throw new ValidationException("Не установлено id книги", "");
+                throw new ValidationException("Book id not set", "");
             var book = Database.Books.Get(id.Value);
             if (book == null)
-                throw new ValidationException("Книга не найдена", "");
+                throw new ValidationException("Book not found", "");
 
             return new BookDto
             {

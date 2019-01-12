@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using LibBusinessLayer.BIL.DTO;
+﻿using LibBusinessLayer.BIL.DTO;
 using LibBusinessLayer.BIL.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.Interfaces
 {

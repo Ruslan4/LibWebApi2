@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibBusinessLayer.BIL.Infrastructure
+﻿namespace LibBusinessLayer.BIL.Infrastructure
 {
     /// <summary>
-    /// Данный класс будет хранить информацию об успешности операции. Свойство Succedeed указывает,
-    /// успешна ли операция, а свойства Message и Property будут хранить соответственно сообщение об ошибке и свойство,
-    /// на котормо произошла ошибка.
+    /// This class will store information about the success of the operation.The Succedeed property indicates
+    /// whether the operation is successful, and the Message and Property properties will store the error message and the property, respectively
+    /// An error has occurred.
     /// </summary>
     public class OperationDetails
     {

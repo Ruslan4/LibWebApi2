@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.Interfaces
 {
-    //воспользуюсь абстрактной фабрикой, которую будет представлять интерфейс IServiceCreator.
+    //I will use the abstract factory that the interface will represent IServiceCreator.
     public interface IServiceCreator
     {
         IUserService CreateUserService(string connection);

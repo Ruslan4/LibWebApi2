@@ -4,7 +4,7 @@ namespace LibBusinessLayer.BIL.Infrastructure
 {
     public class ValidationException : Exception
     {
-        //Это свойство позволяет сохранить название свойства модели, которое некорректно и не проходит валидацию.
+        //This property allows you to save the name of the property of the model, which is incorrect and does not pass validation.
         public string Property { get; protected set; }
         public ValidationException(string message, string prop) : base(message)
         {

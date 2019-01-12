@@ -9,6 +9,7 @@ using Ninject.Web.Common;
 
 namespace BestLibrary.Util
 {
+    /// <inheritdoc />
     /// <summary>
     /// We register dependencies globally for all controllers and for this we will create a new Util folder
     /// in the project and place the new NinjectRegistrations class.

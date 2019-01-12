@@ -6,7 +6,6 @@ using Microsoft.Owin.Security.Cookies;
 using Owin;
 
 [assembly: OwinStartup(typeof(BestLibrary.Startup))]
-
 namespace BestLibrary
 {
     public class Startup
