@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.DTO
 {
+    /// <summary>
+    /// Data Transfer Object (DTO) - special model for data transfer (CatalogBooks).
+    /// </summary>
     public class CatalogBooksDto
     {
         public int Id { get; set; }

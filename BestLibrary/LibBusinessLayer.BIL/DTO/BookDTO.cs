@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.DTO
 {
-    //Data Transfer Object (DTO) - специальная модель для передачи данных.
+    /// <summary>
+    /// Data Transfer Object (DTO) - special model for data transfer (Book).
+    /// </summary>
     public class BookDto
     {
         public int Id { get; set; }

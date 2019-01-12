@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibBusinessLayer.BIL.DTO
 {
+    /// <summary>
+    /// Data Transfer Object (DTO) - special model for data transfer (ClientProfileDto).
+    /// </summary>
     public class ClientProfileDto
     {
         public string Id { get; set; }

@@ -2,6 +2,9 @@
 
 namespace LibBusinessLayer.BIL.DTO
 {
+    /// <summary>
+    /// Data Transfer Object (DTO) - special model for data transfer (IssuanceOfBooksDto).
+    /// </summary>
     public class IssuanceOfBooksDto
     {
         public int Id { get; set; }
