@@ -31,7 +31,7 @@ namespace BestLibrary.Controllers
         }
 
         /// <summary>
-        /// Get All Books in  lib.
+        /// Get All Books from lib.
         /// </summary>
         // GET: Library
         [Authorize]
